@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Screenshot any listing. Get instant AI-powered analysis. Stop buying duds, start buying smart.">
+  
+  <title>Listing Lens - AI-Powered Listing Analysis</title>
+  
+  <!-- Favicons - You'll add these after processing your logo -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#5a4fcf">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 600px;
+      background: white;
+      border-radius: 24px;
+      padding: 60px 40px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    
+    .logo-container {
+      margin-bottom: 30px;
+    }
+    
+    .logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 24px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #1a1a1a;
+      font-weight: 700;
+    }
+    
+    .tagline {
+      font-size: 1.25rem;
+      color: #666;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+    
+    .features {
+      text-align: left;
+      margin: 40px 0;
+      padding: 30px;
+      background: #f8f9fa;
+      border-radius: 16px;
+    }
+    
+    .features h3 {
+      margin-bottom: 15px;
+      color: #667eea;
+      font-size: 1.1rem;
+    }
+    
+    .features ul {
+      list-style: none;
+    }
+    
+    .features li {
+      padding: 10px 0;
+      color: #444;
+      font-size: 0.95rem;
+    }
+    
+    .features li:before {
+      content: "✓ ";
+      color: #667eea;
+      font-weight: bold;
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+    
+    form {
+      display: flex;
+      gap: 10px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    
+    input[type="email"] {
+      flex: 1;
+      min-width: 250px;
+      padding: 16px 20px;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    
+    input[type="email"]:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    button {
+      padding: 16px 32px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+    
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+    }
+    
+    button:active {
+      transform: translateY(0);
+    }
+    
+    .launch-date {
+      margin-top: 24px;
+      color: #999;
+      font-size: 0.9rem;
+    }
+    
+    .social-proof {
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid #e0e0e0;
+    }
+    
+    .use-cases {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    
+    .use-case {
+      background: #f0f0f0;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    
+    @media (max-width: 600px) {
+      .container {
+        padding: 40px 25px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .tagline {
+        font-size: 1.1rem;
+      }
+      
+      .logo {
+        width: 100px;
+        height: 100px;
+      }
+      
+      form {
+        flex-direction: column;
+      }
+      
+      input[type="email"] {
+        min-width: 100%;
+      }
+      
+      button {
+        width: 100%;
+      }
+    }
+    
+    /* Success message */
+    .success-message {
+      display: none;
+      background: #10b981;
+      color: white;
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 20px;
+      font-weight: 500;
+    }
+    
+    .success-message.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo-container">
+      <!-- Replace this src with your actual logo file after processing -->
+      <img src="LLLogo.png" alt="Listing Lens Logo" class="logo">
+    </div>
+    
+    <h1>Listing Lens</h1>
+    <p class="tagline">
+      Screenshot any listing.<br>
+      Get instant AI-powered analysis.
+    </p>
+    
+    <div class="features">
+      <h3>Stop buying duds. Start buying smart.</h3>
+      <ul>
+        <li>Analyze cars, bikes, furniture, electronics instantly</li>
+        <li>Spot red flags and hidden costs before you buy</li>
+        <li>Get clear Buy or Don't Buy recommendations</li>
+        <li>Works with any marketplace screenshot</li>
+      </ul>
+    </div>
+    
+    <form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="waitlist" />
+      <p style="display: none;">
+        <label>Don't fill this out: <input name="bot-field" /></label>
+      </p>
+      <input 
+        type="email" 
+        name="email" 
+        placeholder="Enter your email" 
+        required 
+        aria-label="Email address"
+      />
+      <button type="submit">Join Waitlist</button>
+    </form>
+    
+    <div class="success-message" id="success">
+      🎉 You're on the list! We'll notify you when we launch.
+    </div>
+    
+    <p class="launch-date">Launching November 2025</p>
+    
+    <div class="social-proof">
+      <div class="use-cases">
+        <span class="use-case">🚗 Cars</span>
+        <span class="use-case">🏍️ Motorcycles</span>
+        <span class="use-case">🪑 Furniture</span>
+        <span class="use-case">📱 Electronics</span>
+        <span class="use-case">🎮 Gaming</span>
+        <span class="use-case">🏠 Real Estate</span>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Show success message on form submission
+    const form = document.querySelector('form');
+    const successMessage = document.getElementById('success');
+    
+    form.addEventListener('submit', function(e) {
+      // Netlify will handle the actual submission
+      // This just shows the success message
+      setTimeout(() => {
+        successMessage.classList.add('show');
+        form.style.display = 'none';
+      }, 100);
+    });
+  </script>
+</body>
+</html>
