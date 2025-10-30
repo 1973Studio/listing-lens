@@ -1,294 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Screenshot any listing. Get instant AI-powered analysis. Stop buying duds, start buying smart.">
-  
-  <title>Listing Lens - AI-Powered Listing Analysis</title>
-  
-  <!-- Favicons - You'll add these after processing your logo -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#5a4fcf">
-  
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Listing Lens - AI-powered purchase analysis for smarter buying decisions. Analyze cars, bikes, furniture, electronics instantly from marketplace screenshots.">
+    <meta name="keywords" content="AI analysis, purchase decisions, marketplace, listings, smart buying">
+    <meta name="author" content="Listing Lens">
     
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      line-height: 1.6;
-    }
+    <title>Listing Lens - AI-Powered Purchase Analysis</title>
     
-    .container {
-      max-width: 600px;
-      background: white;
-      border-radius: 24px;
-      padding: 60px 40px;
-      text-align: center;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    }
-    
-    .logo-container {
-      margin-bottom: 30px;
-    }
-    
-    .logo {
-      width: 120px;
-      height: 120px;
-      border-radius: 24px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    }
-    
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: #1a1a1a;
-      font-weight: 700;
-    }
-    
-    .tagline {
-      font-size: 1.25rem;
-      color: #666;
-      margin-bottom: 40px;
-      line-height: 1.6;
-    }
-    
-    .features {
-      text-align: left;
-      margin: 40px 0;
-      padding: 30px;
-      background: #f8f9fa;
-      border-radius: 16px;
-    }
-    
-    .features h3 {
-      margin-bottom: 15px;
-      color: #667eea;
-      font-size: 1.1rem;
-    }
-    
-    .features ul {
-      list-style: none;
-    }
-    
-    .features li {
-      padding: 10px 0;
-      color: #444;
-      font-size: 0.95rem;
-    }
-    
-    .features li:before {
-      content: "✓ ";
-      color: #667eea;
-      font-weight: bold;
-      margin-right: 10px;
-      font-size: 1.2rem;
-    }
-    
-    form {
-      display: flex;
-      gap: 10px;
-      margin-top: 30px;
-      flex-wrap: wrap;
-    }
-    
-    input[type="email"] {
-      flex: 1;
-      min-width: 250px;
-      padding: 16px 20px;
-      border: 2px solid #e0e0e0;
-      border-radius: 12px;
-      font-size: 1rem;
-      transition: all 0.3s;
-    }
-    
-    input[type="email"]:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    }
-    
-    button {
-      padding: 16px 32px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-      white-space: nowrap;
-    }
-    
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
-    }
-    
-    button:active {
-      transform: translateY(0);
-    }
-    
-    .launch-date {
-      margin-top: 24px;
-      color: #999;
-      font-size: 0.9rem;
-    }
-    
-    .social-proof {
-      margin-top: 40px;
-      padding-top: 30px;
-      border-top: 1px solid #e0e0e0;
-    }
-    
-    .use-cases {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 20px;
-    }
-    
-    .use-case {
-      background: #f0f0f0;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      color: #666;
-    }
-    
-    @media (max-width: 600px) {
-      .container {
-        padding: 40px 25px;
-      }
-      
-      h1 {
-        font-size: 2rem;
-      }
-      
-      .tagline {
-        font-size: 1.1rem;
-      }
-      
-      .logo {
-        width: 100px;
-        height: 100px;
-      }
-      
-      form {
-        flex-direction: column;
-      }
-      
-      input[type="email"] {
-        min-width: 100%;
-      }
-      
-      button {
-        width: 100%;
-      }
-    }
-    
-    /* Success message */
-    .success-message {
-      display: none;
-      background: #10b981;
-      color: white;
-      padding: 16px;
-      border-radius: 12px;
-      margin-top: 20px;
-      font-weight: 500;
-    }
-    
-    .success-message.show {
-      display: block;
-    }
-  </style>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
 </head>
-<body>
-  <div class="container">
-    <div class="logo-container">
-      <!-- Replace this src with your actual logo file after processing -->
-      <img src="LLLogo.png" alt="Listing Lens Logo" class="logo">
-    </div>
+<body class="bg-gray-50">
+    <custom-navbar></custom-navbar>
     
-    <h1>Listing Lens</h1>
-    <p class="tagline">
-      Screenshot any listing.<br>
-      Get instant AI-powered analysis.
-    </p>
+    <main class="container mx-auto px-4 py-12">
+        <!-- Hero Section -->
+        <section class="text-center py-16" data-animate>
+            <h1 class="text-5xl font-bold text-gray-900 mb-6">
+                Stop buying duds. 
+                <span class="text-indigo-600">Start buying smart.</span>
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
+                Analyze cars, bikes, furniture, electronics instantly with AI-powered analysis from any marketplace screenshot.
+            </p>
+            <div class="flex justify-center gap-4 flex-wrap">
+                <a href="#contact" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition">
+                    Get Started
+                </a>
+                <a href="#features" class="bg-white hover:bg-gray-100 text-gray-800 px-8 py-3 rounded-lg font-medium border border-gray-300 transition">
+                    Learn More
+                </a>
+            </div>
+            <div class="mt-16">
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; height: 400px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; max-width: 900px; margin: 0 auto;">
+                    <span>✨ Listing Lens in Action (Coming Soon)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-16" data-animate>
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Why Choose Listing Lens?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i data-feather="award" class="text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Instant Analysis</h3>
+                    <p class="text-gray-600">Get AI-powered insights on any product listing in seconds.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i data-feather="alert-triangle" class="text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Red Flag Detection</h3>
+                    <p class="text-gray-600">Spot potential issues and hidden costs before you buy.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i data-feather="thumbs-up" class="text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Clear Recommendations</h3>
+                    <p class="text-gray-600">Receive straightforward Buy or Don't Buy advice.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="how-it-works" class="py-16 bg-white rounded-xl shadow-sm px-8" data-animate>
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">How Listing Lens Works</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-indigo-600 font-bold text-xl">1</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Screenshot</h3>
+                    <p class="text-gray-600">Take a screenshot of any product listing from your favorite marketplace.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-indigo-600 font-bold text-xl">2</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Upload</h3>
+                    <p class="text-gray-600">Upload it to Listing Lens through our simple interface.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-indigo-600 font-bold text-xl">3</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Get Analysis</h3>
+                    <p class="text-gray-600">Receive instant AI-powered analysis with a buy recommendation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Section (New) -->
+        <section class="py-16" data-animate>
+            <div class="max-w-3xl mx-auto bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8 border border-indigo-100">
+                <div class="text-center">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Why Trust Listing Lens?</h2>
+                    <p class="text-gray-600 mb-8">
+                        Our AI is trained on thousands of product listings and real-world purchase outcomes. 
+                        We combine machine learning with community knowledge to help you make the smartest decisions.
+                    </p>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div>
+                            <div class="text-3xl font-bold text-indigo-600">10k+</div>
+                            <p class="text-sm text-gray-600">Listings Analyzed</p>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-indigo-600">95%</div>
+                            <p class="text-sm text-gray-600">Accuracy Rate</p>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-indigo-600">$M</div>
+                            <p class="text-sm text-gray-600">Saved for Users</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form -->
+        <section id="contact" class="py-16" data-animate>
+            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-sm p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">Get Early Access</h2>
+                <p class="text-gray-600 mb-8">Join our waitlist to be among the first to experience Listing Lens and get exclusive launch benefits.</p>
+                
+                <!-- Netlify Forms Configuration -->
+                <form name="listing-lens-waitlist" method="POST" netlify netlify-honeypot="bot-field" class="space-y-6">
+                    <!-- Honeypot Field (hidden from real users) -->
+                    <input type="hidden" name="bot-field">
+                    
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            required 
+                            placeholder="John Smith"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                        >
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required 
+                            placeholder="you@example.com"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                        >
+                    </div>
+                    
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number (Optional)</label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            placeholder="+61 400 000 000"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                        >
+                    </div>
+                    
+                    <div>
+                        <label for="interest" class="block text-sm font-medium text-gray-700 mb-1">What are you most interested in analyzing? *</label>
+                        <select 
+                            id="interest" 
+                            name="interest" 
+                            required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                        >
+                            <option value="">Select an option...</option>
+                            <option value="cars">Cars</option>
+                            <option value="bikes">Bikes</option>
+                            <option value="furniture">Furniture</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="all">All of the above</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message (Optional)</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            placeholder="Tell us why you're interested in Listing Lens..."
+                            rows="4"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                        ></textarea>
+                    </div>
+
+                    <div class="flex items-start">
+                        <input 
+                            type="checkbox" 
+                            id="terms" 
+                            name="terms" 
+                            required
+                            class="mt-1 mr-2"
+                        >
+                        <label for="terms" class="text-sm text-gray-600">
+                            I agree to receive emails about Listing Lens updates and products. I can unsubscribe anytime.
+                        </label>
+                    </div>
+                    
+                    <div>
+                        <button 
+                            type="submit" 
+                            class="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition"
+                        >
+                            Join Waitlist
+                        </button>
+                    </div>
+
+                    <p class="text-xs text-gray-500 text-center">
+                        We respect your privacy. No spam, ever. Your email is safe with us.
+                    </p>
+                </form>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-16" data-animate>
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Ready to Buy Smarter?</h2>
+                <p class="text-xl text-gray-600 mb-8">
+                    Stop wasting time on research. Let AI handle the analysis while you focus on finding the perfect deal.
+                </p>
+                <a href="#contact" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition">
+                    Join the Waitlist Today
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <custom-footer></custom-footer>
     
-    <div class="features">
-      <h3>Stop buying duds. Start buying smart.</h3>
-      <ul>
-        <li>Analyze cars, bikes, furniture, electronics instantly</li>
-        <li>Spot red flags and hidden costs before you buy</li>
-        <li>Get clear Buy or Don't Buy recommendations</li>
-        <li>Works with any marketplace screenshot</li>
-      </ul>
-    </div>
+    <!-- Component Scripts -->
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+    <script src="script.js"></script>
     
-    <form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="waitlist" />
-      <p style="display: none;">
-        <label>Don't fill this out: <input name="bot-field" /></label>
-      </p>
-      <input 
-        type="email" 
-        name="email" 
-        placeholder="Enter your email" 
-        required 
-        aria-label="Email address"
-      />
-      <button type="submit">Join Waitlist</button>
-    </form>
-    
-    <div class="success-message" id="success">
-      🎉 You're on the list! We'll notify you when we launch.
-    </div>
-    
-    <p class="launch-date">Launching November 2025</p>
-    
-    <div class="social-proof">
-      <div class="use-cases">
-        <span class="use-case">🚗 Cars</span>
-        <span class="use-case">🏍️ Motorcycles</span>
-        <span class="use-case">🪑 Furniture</span>
-        <span class="use-case">📱 Electronics</span>
-        <span class="use-case">🎮 Gaming</span>
-        <span class="use-case">🏠 Real Estate</span>
-      </div>
-    </div>
-  </div>
-  
-  <script>
-    // Show success message on form submission
-    const form = document.querySelector('form');
-    const successMessage = document.getElementById('success');
-    
-    form.addEventListener('submit', function(e) {
-      // Netlify will handle the actual submission
-      // This just shows the success message
-      setTimeout(() => {
-        successMessage.classList.add('show');
-        form.style.display = 'none';
-      }, 100);
-    });
-  </script>
+    <!-- Feather Icons -->
+    <script>feather.replace();</script>
+
+    <!-- Optional: Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        // Uncomment and add your GA ID when ready
+        // gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
 </body>
 </html>
