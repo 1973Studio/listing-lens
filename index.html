@@ -4,10 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Listing Lens · See the truth behind every listing</title>
+    <meta
+      name="description"
+      content="Upload a screenshot or paste a link — Listing Lens uses AI to reveal hidden details, risks, and real market value in car listings and beyond."
+    />
+    <link rel="icon" href="/favicon.ico" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      .fade-in {
+        opacity: 0;
+        transform: translateY(15px);
+        animation: fadeIn 1s ease forwards;
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
   </head>
-  <body class="bg-neutral-950 text-white font-sans">
-    <section class="flex flex-col items-center text-center px-6 py-24">
+
+  <body class="bg-neutral-950 text-white font-sans antialiased">
+    <!-- HERO -->
+    <section
+      class="flex flex-col items-center text-center px-6 py-24 fade-in"
+      id="home"
+    >
       <h1 class="text-4xl md:text-6xl font-bold mb-4">
         See the truth behind every listing — instantly.
       </h1>
@@ -16,7 +42,7 @@
         and shows what’s good, what’s risky, and what it’s really worth.
       </p>
       <a
-        href="#"
+        href="#try"
         class="bg-lime-500 text-black px-6 py-3 rounded-xl font-semibold hover:bg-lime-400 transition"
         >🔍 Try Listing Lens</a
       >
@@ -25,6 +51,136 @@
       </p>
     </section>
 
-    <!-- rest identical to React content; copy sections above if you want pure HTML -->
+    <!-- HOW IT WORKS -->
+    <section class="px-6 py-20 bg-neutral-900 text-center fade-in" id="how">
+      <h2 class="text-3xl font-bold mb-10">How it works</h2>
+      <div class="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+        <div>
+          <div class="text-5xl mb-4">📸</div>
+          <h3 class="font-semibold mb-2">1. Upload or paste</h3>
+          <p class="text-neutral-400">
+            Drop any listing screenshot or link straight into the app.
+          </p>
+        </div>
+        <div>
+          <div class="text-5xl mb-4">🤖</div>
+          <h3 class="font-semibold mb-2">2. AI breaks it down</h3>
+          <p class="text-neutral-400">
+            Specs, pricing, hidden red flags — all surfaced in seconds.
+          </p>
+        </div>
+        <div>
+          <div class="text-5xl mb-4">🎯</div>
+          <h3 class="font-semibold mb-2">3. Get the verdict</h3>
+          <p class="text-neutral-400">
+            Worth it ✅ | Risky ⚠️ | Overpriced 💸 — your call made simple.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXAMPLE OUTPUT -->
+    <section class="px-6 py-24 text-center fade-in" id="example">
+      <h2 class="text-3xl font-bold mb-10">Example analysis</h2>
+      <div
+        class="max-w-xl mx-auto bg-neutral-900 rounded-2xl p-6 text-left shadow-lg"
+      >
+        <h3 class="font-semibold text-lime-400 mb-3">
+          2018 Subaru WRX – $36 000 – 120 000 km
+        </h3>
+        <p class="mb-2">
+          <strong class="text-yellow-400">⚠️ Verdict:</strong> Slightly
+          overpriced
+        </p>
+        <ul class="list-disc list-inside text-neutral-300 mb-2">
+          <li>
+            <strong>Pros:</strong> Low owner count, full service history
+          </li>
+          <li><strong>Cons:</strong> High km, likely clutch wear</li>
+        </ul>
+        <p class="mb-1">
+          <strong>Market Range:</strong> $31 000 – $34 500
+        </p>
+        <p class="text-neutral-400">💬 Bottom line: Negotiate or walk.</p>
+      </div>
+      <p class="mt-6 text-neutral-400">
+        One screenshot can save you thousands.
+      </p>
+    </section>
+
+    <!-- TRY IT (upload placeholder) -->
+    <section
+      class="px-6 py-24 bg-neutral-900 text-center fade-in"
+      id="try"
+    >
+      <h2 class="text-3xl font-bold mb-6">Try Listing Lens</h2>
+      <p class="text-neutral-400 max-w-2xl mx-auto mb-8">
+        This demo version simulates how the AI breakdown will work. Upload or
+        paste your first listing below — full AI analysis coming soon.
+      </p>
+
+      <form
+        class="max-w-md mx-auto bg-neutral-800 p-6 rounded-2xl flex flex-col gap-4"
+        onsubmit="event.preventDefault(); alert('Demo only — AI analysis coming soon.');"
+      >
+        <input
+          type="file"
+          accept="image/*"
+          class="bg-neutral-700 text-neutral-300 rounded-lg p-3 cursor-pointer"
+        />
+        <input
+          type="url"
+          placeholder="or paste a listing URL"
+          class="bg-neutral-700 text-neutral-300 rounded-lg p-3"
+        />
+        <button
+          type="submit"
+          class="bg-lime-500 text-black font-semibold rounded-lg py-3 hover:bg-lime-400 transition"
+        >
+          Analyse Listing
+        </button>
+      </form>
+    </section>
+
+    <!-- FUTURE -->
+    <section class="px-6 py-20 text-center fade-in" id="future">
+      <h2 class="text-3xl font-bold mb-6">Beyond cars</h2>
+      <p class="text-neutral-400 max-w-2xl mx-auto mb-6">
+        Coming soon: homes 🏡 · tech 💻 · collectibles 🎮 — anywhere you need
+        an honest AI lens on a listing.
+      </p>
+      <a
+        href="#try"
+        class="bg-lime-500 text-black px-6 py-3 rounded-xl font-semibold hover:bg-lime-400 transition"
+        >Try it now →</a
+      >
+    </section>
+
+    <!-- FOOTER -->
+    <footer
+      class="text-center text-neutral-600 text-sm py-6 border-t border-neutral-800 fade-in"
+    >
+      Built in Australia · © Listing Lens 2025 ·
+      <a href="#" class="underline hover:text-neutral-400">Privacy</a> |
+      <a href="#" class="underline hover:text-neutral-400">Terms</a>
+    </footer>
+
+    <script>
+      // Fade-in animation trigger on scroll
+      const faders = document.querySelectorAll(".fade-in");
+      const appear = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationDelay = "0.1s";
+              entry.target.classList.add("animate-fade-in");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      faders.forEach((el) => appear.observe(el));
+    </script>
   </body>
 </html>
