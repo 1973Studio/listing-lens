@@ -3,112 +3,134 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Listing Lens · See the truth behind every listing</title>
-    <meta name="description" content="AI-powered insight for every listing — from cars to everything." />
+    <title>Listing Lens — See the Truth</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      html { scroll-behavior: smooth; }
-      body { background: radial-gradient(circle at top right,#0d0d0f,#000); }
-      .glass {
-        background: rgba(255,255,255,0.05);
-        backdrop-filter: blur(16px);
-        border: 1px solid rgba(255,255,255,0.08);
+      html { scroll-behavior:smooth; }
+      body {
+        background:#000;
+        color:#fff;
+        font-family: "Inter", sans-serif;
       }
-      .fade { opacity:0; transform:translateY(20px); transition:opacity .8s ease,transform .8s ease; }
-      .fade.visible { opacity:1; transform:none; }
-      .gradient-text {
-        background: linear-gradient(90deg,#00ffc3,#00b3ff);
-        -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      /* gradient blobs */
+      .blob {
+        position:absolute;
+        width:60vmax;
+        height:60vmax;
+        background:radial-gradient(circle at center,
+          rgba(0,255,204,0.25),
+          transparent 70%);
+        filter:blur(120px);
+        animation:move 20s ease-in-out infinite alternate;
+      }
+      .blob2 {
+        background:radial-gradient(circle at center,
+          rgba(255,0,200,0.2),
+          transparent 70%);
+        animation-delay:10s;
+      }
+      @keyframes move {
+        0% {transform:translate(-20%,-10%) scale(1);}
+        100%{transform:translate(20%,10%) scale(1.2);}
+      }
+      .fade {opacity:0;transform:translateY(40px);transition:opacity 1s ease,transform 1s ease;}
+      .fade.visible {opacity:1;transform:none;}
+      .glass-btn {
+        background:rgba(255,255,255,0.08);
+        backdrop-filter:blur(10px);
+        border:1px solid rgba(255,255,255,0.1);
+        padding:.9rem 2rem;
+        border-radius:9999px;
+        font-weight:500;
+        transition:all .3s ease;
+      }
+      .glass-btn:hover {
+        background:rgba(0,255,204,0.2);
+        border-color:rgba(0,255,204,0.4);
       }
     </style>
   </head>
 
-  <body class="text-white font-sans antialiased overflow-x-hidden">
+  <body class="relative overflow-x-hidden">
+    <!-- glowing gradient background -->
+    <div class="blob top-0 left-[-20vmax]"></div>
+    <div class="blob blob2 bottom-0 right-[-20vmax]"></div>
 
     <!-- HERO -->
-    <section class="flex flex-col items-center justify-center text-center px-6 py-32 fade" id="home">
-      <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">
-        See the truth behind every listing
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 fade">
+      <h1 class="text-[10vw] leading-none font-semibold mb-6 tracking-tight">
+        listing <span class="text-[#00ffc3]">lens</span>
       </h1>
-      <p class="text-lg md:text-2xl text-neutral-300 max-w-2xl mb-10">
-        Upload a screenshot or link — AI reveals value, risks & red flags in seconds.
+      <p class="text-neutral-300 text-lg md:text-2xl max-w-2xl mb-10">
+        See the truth behind every listing — instantly.
       </p>
-      <a href="#try" class="bg-gradient-to-r from-[#00ffc3] to-[#00b3ff] text-black px-8 py-4 rounded-full font-semibold hover:opacity-80 transition">Try Listing Lens</a>
-      <p class="text-sm text-neutral-500 mt-5">Cars today · Everything tomorrow</p>
+      <a href="#try" class="glass-btn text-white text-lg">Try Listing Lens</a>
+      <p class="text-sm text-neutral-500 mt-6">Cars today · Everything tomorrow</p>
     </section>
 
-    <!-- HOW IT WORKS -->
-    <section class="px-6 py-28 text-center fade" id="how">
-      <h2 class="text-4xl font-bold mb-16 gradient-text">How it works</h2>
-      <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
-        <div class="glass p-8 rounded-2xl">
-          <div class="text-5xl mb-4">📸</div>
-          <h3 class="font-semibold text-xl mb-2">Upload or Paste</h3>
-          <p class="text-neutral-400">Drop any listing image or URL.</p>
+    <!-- HOW -->
+    <section class="min-h-[80vh] flex flex-col justify-center items-center text-center px-6 fade">
+      <h2 class="text-5xl md:text-6xl font-semibold mb-12">
+        how it works
+      </h2>
+      <div class="max-w-5xl grid md:grid-cols-3 gap-12">
+        <div>
+          <div class="text-6xl mb-3">📸</div>
+          <h3 class="text-xl mb-2 font-medium">Upload</h3>
+          <p class="text-neutral-400">Drop a screenshot or link.</p>
         </div>
-        <div class="glass p-8 rounded-2xl">
-          <div class="text-5xl mb-4">🤖</div>
-          <h3 class="font-semibold text-xl mb-2">AI Analysis</h3>
-          <p class="text-neutral-400">Specs · Pricing · Red flags — all decoded instantly.</p>
+        <div>
+          <div class="text-6xl mb-3">🤖</div>
+          <h3 class="text-xl mb-2 font-medium">Analyse</h3>
+          <p class="text-neutral-400">AI decodes specs, price, and risks.</p>
         </div>
-        <div class="glass p-8 rounded-2xl">
-          <div class="text-5xl mb-4">🎯</div>
-          <h3 class="font-semibold text-xl mb-2">The Verdict</h3>
-          <p class="text-neutral-400">Worth it ✅ | Risky ⚠️ | Overpriced 💸</p>
+        <div>
+          <div class="text-6xl mb-3">🎯</div>
+          <h3 class="text-xl mb-2 font-medium">Decide</h3>
+          <p class="text-neutral-400">Worth it · Risky · Overpriced</p>
         </div>
       </div>
     </section>
 
     <!-- EXAMPLE -->
-    <section class="px-6 py-32 text-center fade" id="example">
-      <h2 class="text-4xl font-bold mb-12 gradient-text">Example Output</h2>
-      <div class="max-w-xl mx-auto glass rounded-2xl p-8 text-left">
-        <h3 class="font-semibold text-cyan-400 mb-3">
-          2018 Subaru WRX – $36 000 – 120 000 km
+    <section class="min-h-[80vh] flex flex-col justify-center items-center text-center px-6 fade">
+      <h2 class="text-5xl md:text-6xl font-semibold mb-12">example output</h2>
+      <div class="glass-btn w-full md:w-auto text-left bg-white/5 p-8 rounded-3xl">
+        <h3 class="text-cyan-400 font-medium mb-2">
+          2018 Subaru WRX — $36 000 — 120 000 km
         </h3>
-        <p class="mb-2"><strong class="text-yellow-400">⚠️ Verdict:</strong> Slightly overpriced</p>
-        <ul class="list-disc list-inside text-neutral-300 mb-2">
+        <p class="text-yellow-400 font-medium mb-1">⚠️ Verdict: Slightly overpriced</p>
+        <ul class="text-neutral-300 mb-2">
           <li><strong>Pros:</strong> Low owners, full service history</li>
-          <li><strong>Cons:</strong> High km, likely clutch wear</li>
+          <li><strong>Cons:</strong> High km, clutch wear likely</li>
         </ul>
-        <p class="mb-1"><strong>Market Range:</strong> $31 000 – $34 500</p>
         <p class="text-neutral-400">💬 Bottom line: Negotiate or walk.</p>
       </div>
       <p class="mt-8 text-neutral-400">One screenshot can save you thousands.</p>
     </section>
 
     <!-- TRY -->
-    <section class="px-6 py-32 text-center fade" id="try">
-      <h2 class="text-4xl font-bold mb-8 gradient-text">Try Listing Lens</h2>
-      <p class="text-neutral-400 max-w-2xl mx-auto mb-10">
-        Demo mode · Full AI pipeline coming soon
-      </p>
-
-      <form class="max-w-md mx-auto glass p-8 rounded-2xl flex flex-col gap-5"
+    <section class="min-h-[80vh] flex flex-col justify-center items-center text-center px-6 fade" id="try">
+      <h2 class="text-5xl md:text-6xl font-semibold mb-8">try it</h2>
+      <form class="w-full max-w-md flex flex-col gap-5"
             onsubmit="event.preventDefault();alert('Demo only — AI coming soon.');">
-        <input type="file" accept="image/*" class="bg-transparent border border-neutral-700 rounded-lg p-3 text-neutral-300 cursor-pointer"/>
-        <input type="url" placeholder="or paste a listing URL" class="bg-transparent border border-neutral-700 rounded-lg p-3 text-neutral-300"/>
-        <button type="submit"
-          class="bg-gradient-to-r from-[#00ffc3] to-[#00b3ff] text-black font-semibold rounded-lg py-3 hover:opacity-80 transition">
-          Analyse Listing
-        </button>
+        <input type="file" accept="image/*" class="bg-transparent border border-neutral-800 rounded-full py-3 px-4 text-neutral-400" />
+        <input type="url" placeholder="or paste a listing URL" class="bg-transparent border border-neutral-800 rounded-full py-3 px-4 text-neutral-400" />
+        <button type="submit" class="glass-btn">Analyse Listing</button>
       </form>
     </section>
 
     <!-- FUTURE -->
-    <section class="px-6 py-28 text-center fade" id="future">
-      <h2 class="text-4xl font-bold mb-6 gradient-text">Beyond Cars</h2>
-      <p class="text-neutral-400 max-w-2xl mx-auto mb-10">
-        Coming soon: Homes 🏡 · Tech 💻 · Collectibles 🎮 — anywhere you need an honest AI lens.
+    <section class="min-h-[60vh] flex flex-col justify-center items-center text-center px-6 fade">
+      <h2 class="text-5xl md:text-6xl font-semibold mb-6">beyond cars</h2>
+      <p class="text-neutral-400 max-w-2xl mb-10">
+        Coming soon: homes 🏡 · tech 💻 · collectibles 🎮 — anywhere you need an honest AI lens.
       </p>
-      <a href="#try" class="bg-gradient-to-r from-[#00ffc3] to-[#00b3ff] text-black px-8 py-4 rounded-full font-semibold hover:opacity-80 transition">Try it now →</a>
+      <a href="#try" class="glass-btn">Get Early Access</a>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="text-center text-neutral-600 text-sm py-10 border-t border-neutral-800 fade">
-      Built in Australia · © Listing Lens 2025 · 
-      <a href="#" class="underline hover:text-neutral-400">Privacy</a> | 
-      <a href="#" class="underline hover:text-neutral-400">Terms</a>
+    <footer class="text-center text-neutral-600 text-sm py-10 border-t border-neutral-900 fade">
+      Built in Australia · © Listing Lens 2025
     </footer>
 
     <script>
