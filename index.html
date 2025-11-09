@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Listing Lens - AI-powered analysis for automotive listings. Analyze Carsales, Facebook Marketplace, and other listings to make smarter vehicle purchase decisions.">
-    <title>Listing Lens - Automotive Analysis</title>
+    <meta name="description" content="Listing Lens - Coming Soon. AI-powered analysis for automotive listings. Available soon on iOS and Android.">
+    <title>Listing Lens - Coming Soon</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect fill='%23000000' width='32' height='32' rx='6'/><circle cx='11' cy='11' r='7' fill='none' stroke='%23ffffff' stroke-width='2'/><line x1='17' y1='17' x2='24' y2='24' stroke='%23ffffff' stroke-width='2' stroke-linecap='round'/></svg>">
     <style>
         * {
@@ -28,621 +28,307 @@
             --gray-900: #111827;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: var(--white);
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
             color: var(--gray-900);
             line-height: 1.6;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--white);
-            border-bottom: 1px solid var(--gray-100);
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            background-color: rgba(255, 255, 255, 0.95);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
+            min-height: 100vh;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem;
+            text-align: center;
         }
 
         .logo {
-            font-size: 1.25rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-            color: var(--black);
-            text-decoration: none;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 0.75rem;
+            text-decoration: none;
+            color: var(--black);
         }
 
         .logo-mark {
-            width: 32px;
-            height: 32px;
+            width: 48px;
+            height: 48px;
             background: var(--black);
-            border-radius: 6px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
             font-weight: 700;
-            font-size: 0.875rem;
+            font-size: 1.25rem;
             letter-spacing: -1px;
         }
 
-        .nav-links {
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
             display: flex;
-            gap: 3rem;
             align-items: center;
-            list-style: none;
+            justify-content: center;
+            padding: 2rem;
         }
 
-        .nav-links a {
-            color: var(--gray-600);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.2s;
+        .container {
+            max-width: 700px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
         }
 
-        .nav-links a:hover {
-            color: var(--black);
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .btn-secondary {
-            color: var(--black);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            padding: 0.625rem 1.25rem;
-            border: 1px solid var(--gray-300);
-            border-radius: 6px;
-            transition: all 0.2s;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--black);
-            background: var(--gray-50);
-        }
-
-        .btn-primary {
+        .badge {
+            display: inline-block;
             background: var(--black);
             color: var(--white);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            padding: 0.625rem 1.25rem;
-            border-radius: 6px;
-            transition: all 0.2s;
-            border: 1px solid var(--black);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
         }
 
-        .btn-primary:hover {
-            background: var(--gray-900);
-            border-color: var(--gray-900);
-        }
-
-        /* Hero Section */
-        main {
-            margin-top: 80px;
-        }
-
-        .hero {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 6rem 2rem;
-            text-align: center;
-        }
-
-        .hero h1 {
+        h1 {
             font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.2;
+            font-weight: 800;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
             color: var(--black);
         }
 
-        .hero p {
-            font-size: 1.25rem;
+        h1 .highlight {
+            background: linear-gradient(135deg, var(--gray-700) 0%, var(--black) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.375rem;
             color: var(--gray-600);
-            max-width: 700px;
-            margin: 0 auto 2rem;
+            margin-bottom: 3rem;
             line-height: 1.6;
         }
 
-        .hero-cta {
+        /* App Store Badges */
+        .app-stores {
             display: flex;
             gap: 1rem;
             justify-content: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             flex-wrap: wrap;
         }
 
-        .hero-image {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            aspect-ratio: 16/9;
-            background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-50) 100%);
-            border-radius: 12px;
-            display: flex;
+        .store-badge {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.125rem;
-            color: var(--gray-400);
-            font-weight: 500;
-        }
-
-        /* Categories */
-        .categories {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-            background: var(--gray-50);
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .category-badge {
-            padding: 2rem;
-            background: var(--white);
-            border-radius: 8px;
-            border: 1px solid var(--gray-200);
-            transition: all 0.2s;
-        }
-
-        .category-badge:hover {
-            border-color: var(--black);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        .category-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .category-badge p {
-            color: var(--gray-600);
-            font-size: 0.95rem;
-        }
-
-        /* Features Section */
-        .features {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 6rem 2rem;
-            background: var(--white);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 4rem;
-            letter-spacing: -0.5px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-        }
-
-        .feature-card {
-            padding: 0;
-        }
-
-        .feature-icon {
-            width: 56px;
-            height: 56px;
+            gap: 0.75rem;
+            padding: 0.875rem 1.75rem;
             background: var(--black);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             color: var(--white);
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.25rem;
+            text-decoration: none;
+            border-radius: 10px;
             font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--black);
+            transition: all 0.3s ease;
+            border: 2px solid var(--black);
+            cursor: not-allowed;
+            opacity: 0.6;
         }
 
-        .feature-card p {
-            color: var(--gray-600);
-            font-size: 1rem;
-            line-height: 1.6;
+        .store-badge.active {
+            cursor: pointer;
+            opacity: 1;
         }
 
-        .feature-example {
-            background: var(--gray-50);
-            padding: 1rem;
-            border-radius: 6px;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: var(--gray-700);
+        .store-badge.active:hover {
+            background: var(--gray-900);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
-        /* How It Works */
-        .how-it-works {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 6rem 2rem;
-            background: var(--gray-50);
+        .store-icon {
+            font-size: 1.75rem;
         }
 
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 4rem;
-            margin-top: 4rem;
+        .store-text {
+            text-align: left;
         }
 
-        .process-step {
-            text-align: center;
+        .store-text small {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 400;
+            opacity: 0.8;
         }
 
-        .step-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--gray-200);
-            margin-bottom: 1rem;
-        }
-
-        .process-step h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--black);
-        }
-
-        .process-step p {
-            color: var(--gray-600);
-            font-size: 1rem;
-        }
-
-        /* Why Section */
-        .why {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 6rem 2rem;
-            background: var(--white);
-        }
-
-        .why-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .why-text h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.5px;
-        }
-
-        .why-list {
-            list-style: none;
-        }
-
-        .why-list li {
-            padding: 1rem 0;
-            padding-left: 2.5rem;
-            position: relative;
-            color: var(--gray-700);
-        }
-
-        .why-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            font-weight: 700;
-            color: var(--black);
-            font-size: 1.25rem;
-        }
-
-        .why-image {
-            background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-50) 100%);
-            border-radius: 12px;
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gray-400);
-            font-weight: 500;
-        }
-
-        /* Stats Section */
-        .stats {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 6rem 2rem;
-            background: var(--gray-50);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat {
-            padding: 2rem;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--black);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--gray-600);
-            font-size: 0.95rem;
-        }
-
-        /* Contact Form */
-        .contact {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 6rem 2rem;
-            background: var(--white);
-        }
-
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -0.5px;
-        }
-
-        .contact > p {
-            color: var(--gray-600);
+        .store-text span {
+            display: block;
             font-size: 1.125rem;
-            margin-bottom: 2rem;
-            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        /* Email Signup */
+        .signup-form {
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .signup-form h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--black);
+        }
+
+        .signup-form p {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
         }
 
-        .form-group label {
-            display: block;
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--gray-900);
-            margin-bottom: 0.625rem;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--gray-300);
-            border-radius: 6px;
+        .form-group input {
+            flex: 1;
+            padding: 0.875rem 1.25rem;
+            border: 2px solid var(--gray-300);
+            border-radius: 8px;
             font-size: 1rem;
             font-family: inherit;
             transition: all 0.2s;
-            background: var(--white);
-            color: var(--black);
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
+        .form-group input:focus {
             outline: none;
             border-color: var(--black);
             box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
         }
 
-        .form-checkbox {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-checkbox input {
-            width: 20px;
-            height: 20px;
-            margin-top: 0.25rem;
-            cursor: pointer;
-        }
-
-        .form-checkbox label {
-            margin: 0;
-            font-size: 0.95rem;
-            color: var(--gray-600);
-            cursor: pointer;
-        }
-
-        .form-submit {
-            width: 100%;
-            padding: 0.875rem 1.5rem;
+        .form-group button {
+            padding: 0.875rem 2rem;
             background: var(--black);
             color: var(--white);
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
+            white-space: nowrap;
         }
 
-        .form-submit:hover {
+        .form-group button:hover {
             background: var(--gray-900);
+            transform: translateY(-1px);
         }
 
-        .form-submit:active {
-            transform: scale(0.98);
+        .form-group button:active {
+            transform: translateY(0);
         }
 
         .form-note {
-            text-align: center;
             font-size: 0.875rem;
             color: var(--gray-500);
             margin-top: 1rem;
         }
 
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature p {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+
         /* Footer */
         footer {
-            background: var(--black);
-            color: var(--white);
-            padding: 4rem 2rem 2rem;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--gray-200);
+            background: var(--white);
         }
 
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 1rem;
         }
 
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-section h3 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.5px;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.875rem;
-        }
-
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.7);
+        .social-links a {
+            color: var(--gray-600);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 1.5rem;
             transition: color 0.2s;
         }
 
-        .footer-section a:hover {
-            color: var(--white);
+        .social-links a:hover {
+            color: var(--black);
         }
 
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        footer p {
+            color: var(--gray-500);
             font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.6);
-            flex-wrap: wrap;
-            gap: 2rem;
         }
 
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
+        footer a {
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 1.875rem;
-            }
-
-            .contact h2 {
-                font-size: 1.875rem;
-            }
-
-            .hero {
-                padding: 3rem 1.5rem;
-            }
-
-            .features,
-            .how-it-works,
-            .stats,
-            .contact,
-            .why {
-                padding: 3rem 1.5rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .features-grid {
-                gap: 2rem;
-            }
-
-            .process-grid {
-                gap: 2rem;
-            }
-
-            .why-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
+        footer a:hover {
+            color: var(--black);
         }
 
         /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -650,275 +336,208 @@
             }
         }
 
-        .fade-in {
-            animation: fadeIn 0.6s ease-out;
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.125rem;
+            }
+
+            .app-stores {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .store-badge {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .signup-form {
+                padding: 1.5rem;
+            }
+
+            .form-group {
+                flex-direction: column;
+            }
+
+            .form-group button {
+                width: 100%;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #10b981;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="/" class="logo">
-                <div class="logo-mark">LL</div>
-                <span>Listing Lens</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#features">How it works</a></li>
-                <li><a href="#contact" class="btn-secondary">Get started</a></li>
-            </ul>
-        </div>
-    </nav>
+    <header>
+        <a href="/" class="logo">
+            <div class="logo-mark">LL</div>
+            <span class="logo-text">Listing Lens</span>
+        </a>
+    </header>
 
-    <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <h1>Analyze automotive listings like a pro.<br><span style="color: var(--gray-600);">Make smarter vehicle purchases.</span></h1>
-            <p>Upload any Carsales, Facebook Marketplace, or Autotrader listing. Get instant AI-powered analysis with price assessments, red flags, hidden costs, and negotiation strategies in seconds.</p>
-            <div class="hero-cta">
-                <a href="#contact" class="btn-primary">Join the waitlist</a>
-                <a href="#features" class="btn-secondary">See how it works</a>
+        <div class="container">
+            <div class="badge pulse">Coming Soon</div>
+
+            <h1>
+                Your AI-Powered<br>
+                <span class="highlight">Automotive Assistant</span>
+            </h1>
+
+            <p class="subtitle">
+                Analyze any car listing in seconds. Get instant insights on pricing, red flags, modifications, and hidden costs. Make smarter vehicle purchases.
+            </p>
+
+            <!-- App Store Badges -->
+            <div class="app-stores">
+                <a href="#" class="store-badge" title="Coming soon to the App Store">
+                    <span class="store-icon">🍎</span>
+                    <span class="store-text">
+                        <small>Download on the</small>
+                        <span>App Store</span>
+                    </span>
+                </a>
+                <a href="#" class="store-badge" title="Coming soon to Google Play">
+                    <span class="store-icon">📱</span>
+                    <span class="store-text">
+                        <small>Get it on</small>
+                        <span>Google Play</span>
+                    </span>
+                </a>
             </div>
-            <div class="hero-image">🚗 Coming soon</div>
-        </section>
 
-        <!-- Categories -->
-        <section class="categories">
-            <div class="categories-grid">
-                <div class="category-badge fade-in">
-                    <div class="category-icon">🚗</div>
-                    <h3 style="color: var(--black); margin-bottom: 0.5rem;">Cars</h3>
-                    <p>Sedans, hatchbacks, SUVs, utes</p>
-                </div>
-                <div class="category-badge fade-in">
-                    <div class="category-icon">🏍️</div>
-                    <h3 style="color: var(--black); margin-bottom: 0.5rem;">Motorcycles</h3>
-                    <p>Bikes, scooters, cruisers</p>
-                </div>
-                <div class="category-badge fade-in">
-                    <div class="category-icon">🚙</div>
-                    <h3 style="color: var(--black); margin-bottom: 0.5rem;">Trucks</h3>
-                    <p>Utes, vans, commercial</p>
-                </div>
-                <div class="category-badge fade-in">
-                    <div class="category-icon">⛵</div>
-                    <h3 style="color: var(--black); margin-bottom: 0.5rem;">Boats</h3>
-                    <p>Tinnies, runabouts, cruisers</p>
-                </div>
-            </div>
-        </section>
+            <!-- Email Signup -->
+            <div class="signup-form">
+                <h3>Be the first to know</h3>
+                <p>Join our waitlist for early access, exclusive pricing, and launch updates.</p>
 
-        <!-- Features Section -->
-        <section id="features" class="features">
-            <h2 class="section-title">What Listing Lens analyzes</h2>
-            <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">📊</div>
-                    <h3>Price Assessment</h3>
-                    <p>Get market value comparisons instantly. Spot if a vehicle is overpriced, underpriced, or fair value.</p>
-                    <div class="feature-example">Fair market value: $18-20k. Listed at: $17.5k (Good deal)</div>
-                </div>
-
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🚩</div>
-                    <h3>Red Flag Detection</h3>
-                    <p>Identifies hidden issues, risky wording, and seller red flags before you commit.</p>
-                    <div class="feature-example">⚠️ "No RWC" = budget $500-1200 for repairs</div>
-                </div>
-
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🔧</div>
-                    <h3>Mod Recognition</h3>
-                    <p>Detects aftermarket parts, upgrades, and modifications (ARB, TJM, Rhino-Rack, etc.).</p>
-                    <div class="feature-example">$8-11k in quality mods detected. Adds real value.</div>
-                </div>
-
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">⚖️</div>
-                    <h3>Compliance Check</h3>
-                    <p>State-specific legality assessment. Flags illegal modifications and compliance risks.</p>
-                    <div class="feature-example">Lift height exceeds legal limit for VIC. Fix needed.</div>
-                </div>
-
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">💰</div>
-                    <h3>Hidden Costs</h3>
-                    <p>Calculates true ownership cost including transport, fuel, registration, and maintenance.</p>
-                    <div class="feature-example">$1,200 transport + $500 compliance work = $18.7k total</div>
-                </div>
-
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">💬</div>
-                    <h3>Negotiation Scripts</h3>
-                    <p>Ready-made talking points based on data. Know exactly what to say to save money.</p>
-                    <div class="feature-example">"Offer $17k citing transport costs + compliance work"</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- How It Works -->
-        <section class="how-it-works">
-            <h2 class="section-title">How it works</h2>
-            <div class="process-grid">
-                <div class="process-step fade-in">
-                    <div class="step-number">1</div>
-                    <h3>Screenshot</h3>
-                    <p>Take a screenshot of any Carsales, Facebook Marketplace, or Autotrader listing on your phone.</p>
-                </div>
-                <div class="process-step fade-in">
-                    <div class="step-number">2</div>
-                    <h3>Upload</h3>
-                    <p>Open Listing Lens and upload the screenshot. Takes 10 seconds.</p>
-                </div>
-                <div class="process-step fade-in">
-                    <div class="step-number">3</div>
-                    <h3>Get Analysis</h3>
-                    <p>Receive instant AI analysis with verdict, pricing, risks, and negotiation script.</p>
-                </div>
-                <div class="process-step fade-in">
-                    <div class="step-number">4</div>
-                    <h3>Buy Smart</h3>
-                    <p>Armed with data and confidence, negotiate better and make your move. Save time and money.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Why Section -->
-        <section class="why">
-            <div class="why-content">
-                <div class="why-text">
-                    <h2>Why Listing Lens?</h2>
-                    <ul class="why-list">
-                        <li>Saves 2-5 hours of manual research per vehicle</li>
-                        <li>Spots hidden issues dealers don't disclose</li>
-                        <li>Gives you negotiating power with real data</li>
-                        <li>Identifies illegal modifications instantly</li>
-                        <li>Calculates true cost of ownership upfront</li>
-                        <li>Works on any Australian marketplace</li>
-                        <li>AI learns from real purchase outcomes</li>
-                    </ul>
-                </div>
-                <div class="why-image">📈 Real-world tested</div>
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section class="stats">
-            <h2 class="section-title">Trusted by smart buyers</h2>
-            <div class="stats-grid">
-                <div class="stat">
-                    <div class="stat-number">2-5h</div>
-                    <div class="stat-label">Time saved per vehicle</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">$500+</div>
-                    <div class="stat-label">Average savings through negotiation</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">95%</div>
-                    <div class="stat-label">Accuracy on market pricing</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact">
-            <div class="contact-content">
-                <h2>Join the waitlist</h2>
-                <p>Early access members get founding pricing and exclusive features. Be first to analyze your next vehicle purchase with confidence.</p>
-                
-                <form name="listing-lens-automotive" method="POST" netlify netlify-honeypot="bot-field">
+                <form id="waitlistForm" name="waitlist" method="POST" netlify netlify-honeypot="bot-field">
                     <input type="hidden" name="bot-field">
-                    
-                    <div class="form-group">
-                        <label for="name">Full name</label>
-                        <input type="text" id="name" name="name" required placeholder="John Smith">
-                    </div>
+                    <input type="hidden" name="form-name" value="waitlist">
 
                     <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="email" id="email" name="email" required placeholder="you@example.com">
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                        >
+                        <button type="submit">Join Waitlist</button>
                     </div>
 
-                    <div class="form-group">
-                        <label for="vehicle">What vehicle are you looking for?</label>
-                        <select id="vehicle" name="vehicle" required>
-                            <option value="">Select one...</option>
-                            <option value="car">Car</option>
-                            <option value="motorcycle">Motorcycle</option>
-                            <option value="truck-ute">Truck / Ute</option>
-                            <option value="boat">Boat</option>
-                            <option value="not-sure">Not sure yet</option>
-                        </select>
+                    <p class="form-note">No spam, ever. Unsubscribe anytime.</p>
+                    <div class="success-message" id="successMessage">
+                        ✓ Thank you! You're on the list. We'll be in touch soon.
                     </div>
-
-                    <div class="form-checkbox">
-                        <input type="checkbox" id="terms" name="terms" required>
-                        <label for="terms">I'd like updates about Listing Lens launch and features. I can unsubscribe anytime.</label>
-                    </div>
-
-                    <button type="submit" class="form-submit">Join the waitlist</button>
-                    <p class="form-note">We respect your privacy. No spam, ever.</p>
                 </form>
             </div>
-        </section>
-    </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="logo" style="color: var(--white); margin-bottom: 1rem;">
-                        <div class="logo-mark">LL</div>
-                        <span>Listing Lens</span>
-                    </div>
-                    <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.95rem;">AI-powered automotive analysis for smarter vehicle purchases. Analyze Carsales, Facebook Marketplace, and more.</p>
-                    <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.85rem; margin-top: 1rem;">Listing Lens is part of the <a href="https://upd8.group" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; font-weight: 500;">UPD8 group</a></p>
+            <!-- Features -->
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h4>Price Analysis</h4>
+                    <p>Instant market value comparisons</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Product</h3>
-                    <ul>
-                        <li><a href="#features">How it works</a></li>
-                        <li><a href="#contact">Get started</a></li>
-                    </ul>
+                <div class="feature">
+                    <div class="feature-icon">🚩</div>
+                    <h4>Red Flag Detection</h4>
+                    <p>Spot hidden issues instantly</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Company</h3>
-                    <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <h4>Cost Calculator</h4>
+                    <p>True ownership costs revealed</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="#">Help center</a></li>
-                        <li><a href="#">Docs</a></li>
-                        <li><a href="#">Status</a></li>
-                    </ul>
+                <div class="feature">
+                    <div class="feature-icon">💬</div>
+                    <h4>Negotiation Tips</h4>
+                    <p>Data-backed talking points</p>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Listing Lens. All rights reserved.</p>
-                <ul class="footer-links">
-                    <li><a href="#">Privacy</a></li>
-                    <li><a href="#">Terms</a></li>
-                    <li><a href="#">Cookies</a></li>
-                </ul>
             </div>
         </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="LinkedIn">💼</a>
+        </div>
+        <p>
+            &copy; 2025 Listing Lens. All rights reserved. |
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Terms of Service</a>
+        </p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+            Part of the <a href="https://upd8.group" target="_blank">UPD8 group</a>
+        </p>
     </footer>
 
     <script>
+        // Handle form submission
+        const form = document.getElementById('waitlistForm');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function(e) {
+            // Let Netlify handle the actual submission
+            // Show success message after a brief delay
+            setTimeout(() => {
+                successMessage.classList.add('show');
+                form.reset();
+
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+            }, 100);
+        });
+
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
+                e.preventDefault();
                 const href = this.getAttribute('href');
                 if (href !== '#' && document.querySelector(href)) {
-                    e.preventDefault();
                     document.querySelector(href).scrollIntoView({
                         behavior: 'smooth'
                     });
@@ -926,17 +545,25 @@
             });
         });
 
-        // Add fade-in animation on scroll
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                    observer.unobserve(entry.target);
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
 
-        document.querySelectorAll('.feature-card, .process-step, .category-badge').forEach(el => {
+        document.querySelectorAll('.feature').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
             observer.observe(el);
         });
     </script>
