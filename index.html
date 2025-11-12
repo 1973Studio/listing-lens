@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Listing Lens</title>
-  <!-- Emoji favicon (no upload needed) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔍</text></svg>">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,30 +14,29 @@
   </style>
 </head>
 <body class="min-h-screen w-full">
-  <!-- Split layout like x.ai / Grok -->
   <div class="grid min-h-screen grid-cols-1 md:grid-cols-2">
-    <!-- Left: content panel -->
+    <!-- Left panel -->
     <section class="relative flex items-center justify-center px-6 py-8 md:px-10">
       <div class="absolute left-6 top-6 hidden items-center gap-3 md:flex">
         <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-black font-bold text-lg">LL</div>
         <span class="text-lg font-semibold">Listing Lens</span>
       </div>
 
-      <div class="w-full max-w-[440px] rounded-2xl bg-[#15151a] p-7 shadow-2xl ring-1 ring-white/10">
+      <div class="w-full max-w-[440px] rounded-2xl bg-[#15151a] p-8 shadow-2xl ring-1 ring-white/10">
         <h1 class="text-[30px] leading-tight font-bold">Turn listings into insight, instantly</h1>
         <p class="mt-2 text-[14px] text-white/70">Analyze any property or car listing in seconds. Discover real‑world pros, cons, and price context — powered by AI.</p>
 
-        <!-- App badges: tight spacing -->
-        <div class="mt-5 space-y-2">
+        <!-- App badges in one compact group -->
+        <div class="mt-5 flex flex-col items-start gap-1.5">
           <a href="https://play.google.com/store/apps/details?id=listinglens" target="_blank" class="block w-fit">
-            <img src="https://listinglens.app/google-play-badge-logo.svg" alt="Get it on Google Play" class="w-[180px] hover:opacity-90" />
+            <img src="https://listinglens.app/google-play-badge-logo.svg" alt="Get it on Google Play" class="w-[175px] hover:opacity-90" />
           </a>
           <a href="https://apps.apple.com/app/listinglens" target="_blank" class="block w-fit">
-            <img src="https://listinglens.app/download-on-the-app-store-apple-logo.svg" alt="Download on the App Store" class="w-[180px] hover:opacity-90" />
+            <img src="https://listinglens.app/download-on-the-app-store-apple-logo.svg" alt="Download on the App Store" class="w-[175px] hover:opacity-90" />
           </a>
         </div>
 
-        <div class="mt-4 space-y-1 text-[11px] text-white/60">
+        <div class="mt-5 space-y-1 text-[11px] text-white/60">
           <div class="flex items-center gap-2">
             <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
             Secure, private, and ad‑free.
@@ -53,25 +51,17 @@
       </div>
     </section>
 
-    <!-- Right: visual panel -->
+    <!-- Right panel -->
     <section class="relative overflow-hidden">
-      <!-- Background gradient + vignette -->
       <div class="absolute inset-0 bg-gradient-to-br from-[#0b0b0f] via-[#111217] to-[#1a1c20]"></div>
       <div class="pointer-events-none absolute inset-0 opacity-50" style="background: radial-gradient(60% 60% at 60% 40%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 60%);"></div>
-
-      <!-- Car image centered, contained inside panel like Grok -->
       <div class="relative flex h-full min-h-[60vh] items-center justify-center p-6 md:p-10">
         <div class="relative w-full max-w-[780px] rounded-[28px] bg-black/40 ring-1 ring-white/10 shadow-2xl">
           <img src="https://listinglens.app/LDVT60.jpg" alt="Listing preview" class="h-[60vh] w-full object-contain" />
-          <!-- soft mask on bottom like Grok -->
           <div class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/40 to-transparent"></div>
         </div>
       </div>
     </section>
   </div>
-
-  <script>
-    // No JS needed beyond this point
-  </script>
 </body>
 </html>
