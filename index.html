@@ -4,82 +4,89 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Listing Lens</title>
-
-  <!-- Favicon -->
+  <!-- Simple emoji favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔍</text></svg>">
-
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
   <style>
     :root { color-scheme: dark; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0b0b0f;
-      color: #fff;
-      margin: 0;
-      overflow-x: hidden;
-    }
+    html, body { height: 100%; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, Apple Color Emoji, Segoe UI Emoji; }
   </style>
 </head>
-<body>
-
-  <!-- Header -->
-  <header class="flex justify-between items-center px-8 py-6">
-    <div class="flex items-center gap-3">
-      <div class="flex items-center justify-center h-8 w-8 rounded-lg bg-white text-black font-bold text-lg">LL</div>
-      <span class="text-xl font-semibold">Listing Lens</span>
+<body class="min-h-screen w-full bg-[#0b0b0f] text-white">
+  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-black/30">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+      <div class="flex items-center gap-3">
+        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-black font-bold text-lg">LL</div>
+        <span class="text-xl font-semibold tracking-tight">Listing Lens</span>
+      </div>
+      <nav class="hidden items-center gap-6 md:flex">
+        <a href="#features" class="text-sm text-white/80 hover:text-white">Features</a>
+        <a href="#how" class="text-sm text-white/80 hover:text-white">How it works</a>
+        <a href="#pricing" class="text-sm text-white/80 hover:text-white">Pricing</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button class="rounded-full border border-white/15 px-4 py-2 text-sm text-white/85 hover:bg-white/10">Get the App</button>
+      </div>
     </div>
-    <nav class="hidden md:flex items-center gap-8 text-sm text-white/80">
-      <a href="#features" class="hover:text-white">Features</a>
-      <a href="#how" class="hover:text-white">How it works</a>
-      <a href="#pricing" class="hover:text-white">Pricing</a>
-    </nav>
-    <button class="rounded-full border border-white/20 px-5 py-2 text-sm hover:bg-white/10">Get the App</button>
   </header>
 
-  <!-- Main Hero Section -->
-  <main class="relative flex justify-center items-center px-6 pb-24">
-    <!-- Hero background -->
-    <div class="w-full max-w-6xl relative">
-      <img src="https://listinglens.app/LDVT60.jpg" 
-           alt="Listing Lens preview" 
-           class="w-full h-auto rounded-[36px] object-cover shadow-2xl ring-1 ring-white/10" />
+  <main class="px-4 pb-16 pt-6 lg:pb-24 lg:pt-12">
+  <!-- Centered hero container like character.ai -->
+  <div class="relative mx-auto max-w-[1120px]">
+    <!-- HERO MEDIA (tighter, not full-bleed) -->
+    <div class="relative">
+      <div class="relative h-[480px] w-full overflow-hidden rounded-[32px] bg-black shadow-2xl ring-1 ring-white/10 md:h-[520px]">
+        <img src="https://listinglens.app/LDVT60.jpg" alt="Listing Lens hero" class="h-full w-full object-cover object-center" />
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/30 via-transparent to-black/10"></div>
+        <div class="absolute bottom-5 right-5 hidden items-center gap-3 md:flex">
+          <div class="rounded-full bg-black/55 px-3 py-1 text-xs text-white/85 backdrop-blur">Instant insights from real listings</div>
+          <button class="group inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs font-medium text-black hover:bg-white">
+            Try a demo
+            <svg class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
 
-      <!-- Overlay content -->
-      <div class="absolute top-1/2 left-[-2rem] -translate-y-1/2">
-        <div class="w-[380px] bg-[#15151a] rounded-[28px] p-7 shadow-2xl ring-1 ring-white/10">
-          <h1 class="text-3xl font-bold leading-tight mb-2">Turn listings into insight, instantly</h1>
-          <p class="text-white/70 mb-6">Analyze any property or car listing in seconds. Discover real-world pros, cons, and price context — powered by AI.</p>
+      <!-- OVERLAY CARD ANCHORED TO HERO (left, vertically centered) -->
+      <div class="md:absolute md:left-6 md:top-1/2 md:-translate-y-1/2">
+        <div class="mt-6 w-full max-w-[380px] rounded-[24px] bg-[#15151a] p-6 shadow-2xl ring-1 ring-white/10 md:mt-0">
+          <h1 class="text-[26px] leading-[1.1] font-bold md:text-[32px]">Turn listings into insight, instantly</h1>
+          <p class="mt-2 text-[14px] text-white/70">Analyze any property or car listing in seconds. Discover real‑world pros, cons, and price context — powered by AI.</p>
 
-          <div class="space-y-4">
-            <a href="https://play.google.com/store/apps/details?id=listinglens" target="_blank">
-              <img src="https://listinglens.app/google-play-badge-logo.svg" alt="Get it on Google Play" class="w-44 hover:opacity-90">
+          <!-- TIGHTER BADGE STACK -->
+          <div class="mt-4 space-y-2">
+            <a href="https://play.google.com/store/apps/details?id=listinglens" target="_blank" class="block">
+              <img src="https://listinglens.app/google-play-badge-logo.svg" alt="Get it on Google Play" class="w-[172px] md:w-[184px] hover:opacity-90" />
             </a>
-            <a href="https://apps.apple.com/app/listinglens" target="_blank">
-              <img src="https://listinglens.app/download-on-the-app-store-apple-logo.svg" alt="Download on the App Store" class="w-44 hover:opacity-90">
+            <a href="https://apps.apple.com/app/listinglens" target="_blank" class="block">
+              <img src="https://listinglens.app/download-on-the-app-store-apple-logo.svg" alt="Download on the App Store" class="w-[172px] md:w-[184px] hover:opacity-90" />
             </a>
           </div>
 
-          <div class="mt-6 text-xs text-white/60 space-y-2">
+          <div class="mt-4 space-y-1 text-[11px] text-white/60">
             <div class="flex items-center gap-2">
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-              Secure, private, and ad-free.
+              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+              Secure, private, and ad‑free.
             </div>
             <div class="flex items-center gap-2">
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 3.5L17 8l-3.5 1.5L12 13l-1.5-3.5L7 8l3.5-1.5L12 3z"/><path d="M19 14l.8 1.8L22 17l-1.8.8L19 19l-.8-1.2L16 17l1.8-.2L19 14z"/><path d="M5 14l.8 1.8L8 17l-1.8.8L5 19l-.8-1.2L2 17l1.8-.2L5 14z"/></svg>
+              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 3.5L17 8l-3.5 1.5L12 13l-1.5-3.5L7 8l3.5-1.5L12 3z"/><path d="M19 14l.8 1.8L22 17l-1.8.8L19 19l-.8-1.2L16 17l1.8-.2L19 14z"/><path d="M5 14l.8 1.8L8 17l-1.8.8L5 19l-.8-1.2L2 17l1.8-.2L5 14z"/></svg>
               Works with Carsales, Marketplace & Zillow.
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </main>
 
-  <!-- Footer -->
+    </div>
+  </div>
+</main>
+
   <footer class="border-t border-white/10 py-10 text-center text-sm text-white/60">
-    <p>© <span id="yy"></span> Listing Lens. All rights reserved.</p>
-    <p>Listing Lens is part of <a href="https://1973.studio/" class="underline hover:text-white">Studio '73</a>.</p>
+    <div class="mx-auto max-w-7xl px-4 space-y-2">
+      <p>© <span id="yy"></span> Listing Lens. All rights reserved.</p>
+      <p>Listing Lens is part of <a href="https://1973.studio/" class="underline hover:text-white">Studio '73</a>.</p>
+    </div>
   </footer>
 
   <script>
