@@ -4,6 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Listing Lens</title>
+  <!-- Simple emoji favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔍</text></svg>">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -30,11 +32,23 @@
     </div>
   </header>
 
-  <main class="mx-auto max-w-[1200px] px-4 md:px-6 lg:px-8 pb-16 pt-6 lg:pb-24 lg:pt-12">
-    <!-- 2-column layout matching character.ai proportions: fixed left column, flexible right hero -->
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-[420px_1fr] lg:gap-10 items-start">
-      <!-- Auth/Store card (left) -->
-      <div class="sticky top-20">
+  <main class="mx-auto max-w-[1400px] px-4 md:px-6 lg:px-8 pb-16 pt-6 lg:pb-24 lg:pt-12">
+    <div class="relative">
+      <div class="relative ml-0 md:ml-[220px] lg:ml-[260px]">
+        <div class="relative aspect-[16/9] w-full overflow-hidden rounded-[36px] shadow-2xl ring-1 ring-white/10">
+          <img src="https://listinglens.app/LDVT60.jpg" alt="Listing Lens hero" class="h-full w-full object-cover object-center" />
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/30 via-transparent to-black/10"></div>
+          <div class="absolute bottom-5 right-5 flex items-center gap-3">
+            <div class="rounded-full bg-black/55 px-3 py-1 text-xs text-white/85 backdrop-blur">Instant insights from real listings</div>
+            <button class="group inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs font-medium text-black hover:bg-white">
+              Try a demo
+              <svg class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 z-20 max-w-none md:w-[420px]">
         <div class="w-full rounded-[28px] bg-[#15151a] p-6 md:p-7 shadow-2xl ring-1 ring-white/10">
           <h1 class="text-[28px] leading-[1.1] font-bold md:text-[36px]">Turn listings into insight, instantly</h1>
           <p class="mt-2 text-white/70">Analyze any property or car listing in seconds. Discover real‑world pros, cons, and price context — powered by AI.</p>
@@ -60,40 +74,8 @@
           </div>
         </div>
       </div>
-
-      <!-- Hero media (right). Uses large rounded card and slight left pull like character.ai -->
-      <div class="relative -mx-2 md:mx-0 lg:-ml-6">
-        <div class="relative aspect-[16/9] w-full overflow-hidden rounded-[32px] ring-1 ring-white/10">
-          <img src="https://listinglens.app/LDVT60.jpg" alt="Listing Lens hero" class="h-full w-full object-cover object-center" />
-          <div class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/35 via-transparent to-black/15"></div>
-          <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-            <div class="rounded-full bg-black/55 px-3 py-1 text-xs text-white/85 backdrop-blur">Instant insights from real listings</div>
-            <button class="group inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs font-medium text-black hover:bg-white">
-              Try a demo
-              <svg class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
   </main>
-
-  <section id="features" class="mx-auto max-w-7xl px-4 pb-24">
-    <div class="grid gap-6 md:grid-cols-3">
-      <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-        <h3 class="text-lg font-semibold">Smart summaries</h3>
-        <p class="mt-2 text-sm text-white/70">Upload a listing and get an instant, honest AI breakdown—pros, cons, and value hints.</p>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-        <h3 class="text-lg font-semibold">Hidden costs flagged</h3>
-        <p class="mt-2 text-sm text-white/70">Spot typical maintenance, insurance, and depreciation risks before you buy.</p>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-        <h3 class="text-lg font-semibold">Dealer‑ready insights</h3>
-        <p class="mt-2 text-sm text-white/70">Get negotiation angles and smart questions you can use immediately.</p>
-      </div>
-    </div>
-  </section>
 
   <footer class="border-t border-white/10 py-10 text-center text-sm text-white/60">
     <div class="mx-auto max-w-7xl px-4 space-y-2">
