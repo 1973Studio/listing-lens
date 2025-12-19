@@ -362,11 +362,7 @@
         const res = await fetch(ANALYZE_ENDPOINT, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-  imageBase64: base64String,
-  mimeType: file.type
-})
-
+          body: JSON.stringify({ imageBase64: base64String })
         });
 
         if (!res.ok) {
