@@ -1,1 +1,251 @@
-.
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Listing Lens | Meet Your Mechanic</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    ::selection { background-color: #2563EB; color: white; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
+    .animate-fade-in-up { animation: fadeUp .45s ease-out both; }
+
+    /* subtle “scan-line” vibe */
+    @keyframes scan { 0% { top: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+    .animate-scan { animation: scan 2.8s linear infinite; }
+  </style>
+</head>
+
+<body class="bg-white text-black min-h-screen relative">
+
+  <!-- NAV (Smart Sticky) -->
+  <nav id="main-nav" class="flex justify-between items-center p-6 md:p-12 z-40 fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md transition-transform duration-300">
+    <a href="/" class="text-2xl font-black tracking-tighter cursor-pointer z-50 relative">LISTING LENS.</a>
+
+    <button id="menu-btn" class="z-50 relative group p-2" aria-label="Open menu">
+      <div class="space-y-2">
+        <span class="block w-8 h-0.5 bg-black transition-all duration-300 group-hover:bg-blue-600"></span>
+        <span class="block w-8 h-0.5 bg-black transition-all duration-300 group-hover:bg-blue-600"></span>
+      </div>
+    </button>
+  </nav>
+
+  <!-- MENU OVERLAY -->
+  <div id="menu-overlay" class="fixed inset-0 bg-white z-30 hidden flex-col justify-center items-center opacity-0 transition-opacity duration-300 pt-32">
+    <div class="flex flex-col gap-8 text-center">
+      <a href="/mechanic.html" class="menu-link text-4xl font-black tracking-tight hover:text-blue-600 transition-colors">Meet Your Mechanic</a>
+      <a href="/#how-it-works" class="menu-link text-4xl font-black tracking-tight hover:text-blue-600 transition-colors">How it Works</a>
+      <a href="/#pricing" class="menu-link text-4xl font-black tracking-tight hover:text-blue-600 transition-colors">Pricing</a>
+      <a href="/#faq" class="menu-link text-4xl font-black tracking-tight hover:text-blue-600 transition-colors">FAQ</a>
+      <div class="h-px w-24 bg-gray-200 mx-auto my-4"></div>
+      <button class="text-xl font-bold uppercase tracking-widest border-2 border-black px-12 py-4 rounded-full hover:bg-black hover:text-white transition-all">Login</button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <main class="pt-32 pb-16 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+
+      <div class="space-y-8 animate-fade-in-up">
+        <div class="inline-flex items-center gap-2 bg-gray-100 border border-gray-200 rounded-full px-4 py-2 text-xs font-mono uppercase tracking-widest text-gray-600">
+          <span class="h-2 w-2 bg-blue-600 rounded-full"></span>
+          Persona: Pissed-Off Mechanic
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-black leading-tight tracking-tighter">
+          Meet your mechanic.<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">He doesn’t care about feelings.</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl font-medium max-w-xl text-gray-500 leading-relaxed">
+          He cares about **what breaks**, what it costs, and what sellers “forget” to mention.
+          Listing Lens exists to save you time, money, and regret.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/#pricing" class="bg-blue-600 text-white text-lg font-bold py-4 px-10 rounded-full hover:bg-black transition-colors w-fit">
+            Scan a listing →
+          </a>
+          <a href="/#how-it-works" class="bg-white border-2 border-black text-black text-lg font-bold py-4 px-10 rounded-full hover:bg-black hover:text-white transition-colors w-fit">
+            How it works
+          </a>
+        </div>
+
+        <p class="text-xs text-gray-400 font-mono tracking-widest uppercase">
+          * Not a mechanical inspection. It’s a brutally honest filter.
+        </p>
+      </div>
+
+      <!-- VISUAL PANEL -->
+      <div class="relative bg-gray-100 rounded-3xl overflow-hidden shadow-inner h-[520px]">
+        <div class="absolute inset-0 bg-cover bg-center opacity-90"
+          style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop');">
+        </div>
+        <div class="absolute inset-0 bg-black/15"></div>
+
+        <!-- scan line -->
+        <div class="absolute left-0 w-full h-1 bg-blue-500 shadow-[0_0_30px_rgba(59,130,246,1)] animate-scan z-20"></div>
+
+        <div class="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-white/50">
+          <div class="text-xs font-mono text-gray-500 uppercase tracking-widest mb-2">What he does</div>
+          <div class="space-y-2 text-sm text-gray-700">
+            <div class="flex gap-2"><span class="font-black">•</span><span>Decodes listing fluff into reality.</span></div>
+            <div class="flex gap-2"><span class="font-black">•</span><span>Flags missing info, mismatches, and “too clean” photos.</span></div>
+            <div class="flex gap-2"><span class="font-black">•</span><span>Calls out known faults for the model/year.</span></div>
+            <div class="flex gap-2"><span class="font-black">•</span><span>Spits out the exact questions you should ask.</span></div>
+          </div>
+        </div>
+
+        <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- WHAT TO EXPECT -->
+  <section class="py-20 px-6 md:px-12 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-black tracking-tight mb-10">What you’ll get back</h2>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-50 border border-gray-100 rounded-2xl p-8">
+          <div class="text-xs font-mono text-gray-400 uppercase tracking-widest mb-3">01</div>
+          <h3 class="text-xl font-black mb-3">Straight verdict</h3>
+          <p class="text-gray-500 leading-relaxed">
+            Not “maybe”. Not “it depends”. You’ll get: good buy / bad buy / buy-only-if.
+          </p>
+        </div>
+
+        <div class="bg-gray-50 border border-gray-100 rounded-2xl p-8">
+          <div class="text-xs font-mono text-gray-400 uppercase tracking-widest mb-3">02</div>
+          <h3 class="text-xl font-black mb-3">Red flags + missing info</h3>
+          <p class="text-gray-500 leading-relaxed">
+            Service history absent? Photos weirdly cropped? Suspicious phrasing? It gets called out.
+          </p>
+        </div>
+
+        <div class="bg-gray-50 border border-gray-100 rounded-2xl p-8">
+          <div class="text-xs font-mono text-gray-400 uppercase tracking-widest mb-3">03</div>
+          <h3 class="text-xl font-black mb-3">Questions to ask</h3>
+          <p class="text-gray-500 leading-relaxed">
+            You’ll know exactly what to ask before you waste time driving, flying, or booking inspections.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW HE "THINKS" -->
+  <section class="py-20 px-6 md:px-12 bg-gray-50">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-black tracking-tight mb-6">How the mechanic thinks</h2>
+        <p class="text-gray-600 leading-relaxed text-lg mb-6">
+          He’s not here to be impressed. He’s here to find the bill that’s hiding behind the photos.
+        </p>
+
+        <div class="space-y-4 text-gray-700">
+          <div class="bg-white border border-gray-100 rounded-2xl p-5">
+            <div class="font-black mb-1">He distrusts perfect listings.</div>
+            <div class="text-gray-500 text-sm">Overly polished photos + vague description often means “don’t look too closely”.</div>
+          </div>
+          <div class="bg-white border border-gray-100 rounded-2xl p-5">
+            <div class="font-black mb-1">He cares about history.</div>
+            <div class="text-gray-500 text-sm">No records = assume the worst until proven otherwise.</div>
+          </div>
+          <div class="bg-white border border-gray-100 rounded-2xl p-5">
+            <div class="font-black mb-1">He watches for mismatch.</div>
+            <div class="text-gray-500 text-sm">Trim badges, odometer vs wear, mods vs claim, seller language vs reality.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
+        <div class="text-xs font-mono text-gray-400 uppercase tracking-widest mb-4">Non-negotiables</div>
+
+        <ul class="space-y-3 text-gray-700">
+          <li class="flex gap-3"><span class="text-blue-600 font-black">✓</span><span><span class="font-black">You stay anonymous.</span> Screenshots aren’t stored after the report is generated (design goal).</span></li>
+          <li class="flex gap-3"><span class="text-blue-600 font-black">✓</span><span><span class="font-black">No scraping.</span> We only analyse what you provide.</span></li>
+          <li class="flex gap-3"><span class="text-blue-600 font-black">✓</span><span><span class="font-black">No fence-sitting.</span> The mechanic picks a side and tells you why.</span></li>
+        </ul>
+
+        <div class="mt-8 p-5 rounded-2xl bg-gray-50 border border-gray-100">
+          <div class="font-black mb-2">Best practice for best results</div>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Use **3 screenshots** minimum: (1) title + price + km, (2) description text, (3) photo grid / key photos.
+            More context = sharper call.
+          </p>
+        </div>
+
+        <div class="mt-8">
+          <a href="/#pricing" class="inline-flex items-center justify-center bg-black text-white font-bold px-8 py-3 rounded-full hover:bg-blue-600 transition-colors">
+            Run a scan →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-gray-100 pt-14 pb-8 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-gray-400 font-mono text-xs uppercase tracking-widest gap-4">
+      <div class="flex flex-wrap justify-center md:justify-start gap-4 md:gap-8">
+        <a href="/#faq" class="hover:text-blue-600 transition-colors">FAQ</a>
+        <a href="#" class="hover:text-blue-600 transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-blue-600 transition-colors">Terms &amp; Conditions</a>
+        <span>Not a mechanical inspection</span>
+        <span>Powered by GPT</span>
+      </div>
+      <div>© 2026 Listing Lens Labs</div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Menu Toggle
+      const menuBtn = document.getElementById('menu-btn');
+      const menuOverlay = document.getElementById('menu-overlay');
+      const menuLinks = document.querySelectorAll('.menu-link');
+      let isMenuOpen = false;
+
+      function toggleMenu() {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+          menuOverlay.classList.remove('hidden');
+          setTimeout(() => {
+            menuOverlay.classList.remove('opacity-0');
+            menuOverlay.classList.add('opacity-100');
+          }, 10);
+          menuBtn.classList.add('rotate-90');
+        } else {
+          menuOverlay.classList.remove('opacity-100');
+          menuOverlay.classList.add('opacity-0');
+          setTimeout(() => menuOverlay.classList.add('hidden'), 300);
+          menuBtn.classList.remove('rotate-90');
+        }
+      }
+
+      menuBtn.addEventListener('click', toggleMenu);
+      menuLinks.forEach(link => link.addEventListener('click', () => {
+        if (isMenuOpen) toggleMenu();
+      }));
+
+      // Smart Navbar hide/show
+      let lastScrollY = window.scrollY;
+      const nav = document.getElementById('main-nav');
+      window.addEventListener('scroll', () => {
+        if (isMenuOpen) return;
+        const current = window.scrollY;
+        if (current > lastScrollY && current > 50) nav.classList.add('-translate-y-full');
+        else nav.classList.remove('-translate-y-full');
+        lastScrollY = current;
+      });
+    });
+  </script>
+
+</body>
+</html>
