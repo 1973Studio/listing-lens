@@ -78,16 +78,37 @@
     </div>
   </div>
 
-  <!-- NAV (Smart Sticky) -->
-  <nav id="main-nav" class="flex justify-between items-center p-6 md:p-12 z-40 fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md transition-transform duration-300">
-    <div class="text-2xl font-black tracking-tighter cursor-pointer z-50 relative">LISTING LENS.</div>
-    <button id="menu-btn" class="z-50 relative group p-2" aria-label="Open menu">
-      <div class="space-y-2">
-        <span class="block w-8 h-0.5 bg-black transition-all duration-300 group-hover:bg-blue-600"></span>
-        <span class="block w-8 h-0.5 bg-black transition-all duration-300 group-hover:bg-blue-600"></span>
-      </div>
+ 
+ <!-- NAV (Smart Sticky) -->
+<nav id="main-nav" class="flex justify-between items-center p-6 md:p-12 z-40 fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md transition-transform duration-300">
+  <a href="/" class="text-2xl font-black tracking-tighter cursor-pointer z-50 relative">LISTING LENS.</a>
+
+  <!-- Desktop nav -->
+  <div class="hidden md:flex items-center gap-10 z-50 relative">
+    <a href="/mechanic.html" class="font-bold tracking-tight text-gray-700 hover:text-blue-600 transition-colors">
+      Meet Your Mechanic
+    </a>
+    <a href="#how-it-works" class="font-bold tracking-tight text-gray-700 hover:text-blue-600 transition-colors">
+      How it Works
+    </a>
+    <a href="#pricing" class="font-bold tracking-tight text-gray-700 hover:text-blue-600 transition-colors">
+      Pricing
+    </a>
+
+    <button class="bg-blue-600 text-white font-bold px-6 py-3 rounded-full hover:bg-black transition-colors">
+      Login
     </button>
-  </nav>
+  </div>
+
+  <!-- Mobile hamburger -->
+  <button id="menu-btn" class="md:hidden z-50 relative group p-2" aria-label="Open menu">
+    <div class="space-y-2">
+      <span class="block w-8 h-0.5 bg-black transition-all duration-300 group-hover:bg-blue-600"></span>
+      <span class="block w-8 h-0.5 bg-black transition-all duration-300 group-hover:bg-blue-600"></span>
+    </div>
+  </button>
+</nav>
+
 
 <!-- MENU OVERLAY -->
 <div id="menu-overlay" class="fixed inset-0 bg-white z-30 hidden flex-col justify-center items-center opacity-0 transition-opacity duration-300 pt-32">
@@ -498,6 +519,8 @@
 
       // Menu Toggle
       const menuBtn = document.getElementById('menu-btn');
+      if (!menuBtn) return;
+
       const menuOverlay = document.getElementById('menu-overlay');
       const menuLinks = document.querySelectorAll('.menu-link');
       let isMenuOpen = false;
