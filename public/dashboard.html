@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <title>Listing Lens — Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Your Listing Lens case files and scan history." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    ::selection { background:#2563eb; color:#fff; }
+  </style>
+</head>
+
+<body class="bg-zinc-950 text-zinc-100">
+
+<!-- HEADER -->
+<header class="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/90 backdrop-blur">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/index.html" class="font-black tracking-tight text-lg hover:opacity-90">
+      Listing Lens
+    </a>
+
+    <div class="flex items-center gap-6 text-sm">
+      <div class="text-zinc-400">
+        Credits: <span class="text-zinc-100 font-semibold">—</span>
+      </div>
+
+      <a href="/index.html" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 font-semibold">
+        New Scan
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-6 py-10">
+
+  <!-- INTRO -->
+  <section class="mb-10">
+    <h1 class="text-2xl font-black tracking-tight mb-2">Your Case Files</h1>
+    <p class="text-zinc-400 max-w-2xl">
+      Each case is a forensic assessment of a specific listing. Screenshots are analysed and then deleted.
+      Only conclusions remain.
+    </p>
+  </section>
+
+  <!-- EMPTY STATE (keep for now) -->
+  <section class="mb-8 border border-zinc-800 rounded-xl p-6 bg-zinc-900">
+    <div class="flex items-start justify-between gap-6">
+      <div>
+        <h2 class="font-bold text-lg mb-1">No saved cases yet</h2>
+        <p class="text-zinc-400 text-sm">
+          Run a scan, then we’ll show your results here. (V1 stores conclusions only — no images.)
+        </p>
+      </div>
+      <a href="/index.html" class="shrink-0 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 font-semibold text-sm">
+        Scan a listing
+      </a>
+    </div>
+  </section>
+
+  <!-- SAMPLE CASE (placeholder until we wire real storage) -->
+  <section class="space-y-6">
+
+    <article class="case border border-zinc-800 rounded-xl p-6 bg-zinc-900">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h2 class="font-bold text-lg">2018 Jeep Wrangler JL Overland</h2>
+          <p class="text-zinc-400 text-sm">Scanned 22 Dec 2025 · Analysis based on 1 screenshot</p>
+        </div>
+
+        <div class="flex items-center gap-6">
+          <div class="text-center">
+            <div class="text-3xl font-black text-amber-400">62</div>
+            <div class="text-xs text-zinc-400 uppercase tracking-wide">Lens Score</div>
+          </div>
+
+          <button type="button"
+            class="toggle-details text-sm font-semibold text-blue-400 hover:text-blue-300">
+            View details
+          </button>
+        </div>
+      </div>
+
+      <div class="details hidden mt-6 border-t border-zinc-800 pt-6 space-y-6">
+        <div>
+          <h3 class="font-bold mb-1">Verdict</h3>
+          <p class="text-zinc-300">
+            Proceed with caution. Several listing claims do not align with detected trim and there are compliance risks.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-bold mb-1">Visual & Technical Forensics</h3>
+          <ul class="list-disc pl-5 text-zinc-300 space-y-1">
+            <li>Rock-Trac listed, but Selec-Trac aligns with Overland trim</li>
+            <li>“Beadlock” wheels look imitation — verify in person</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold mb-1">Regulatory & Legal (AU)</h3>
+          <ul class="list-disc pl-5 text-zinc-300 space-y-1">
+            <li>Tyre poke likely exceeds ADR limits</li>
+            <li>Lift may require engineering certification under VSB 14</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold mb-1">Mechanical Risk</h3>
+          <ul class="list-disc pl-5 text-zinc-300 space-y-1">
+            <li>Pentastar oil cooler leak risk</li>
+            <li>Confirm HPFP recall completion (if applicable)</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold mb-1">Ownership Reality</h3>
+          <p class="text-zinc-300">
+            Roof rack + big tyres will raise wind noise and fuel use at highway speeds. You’ll feel it.
+          </p>
+        </div>
+
+        <div class="flex gap-4 pt-2">
+          <button class="text-sm text-blue-400 hover:text-blue-300 font-semibold" type="button">Re-open report</button>
+          <button class="text-sm text-red-400 hover:text-red-300 font-semibold" type="button">Delete case</button>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+</main>
+
+<script>
+  document.querySelectorAll(".case .toggle-details").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const caseEl = btn.closest(".case");
+      const details = caseEl.querySelector(".details");
+      const isOpen = !details.classList.contains("hidden");
+      details.classList.toggle("hidden");
+      btn.textContent = isOpen ? "View details" : "Hide details";
+    });
+  });
+</script>
+
+</body>
+</html>
