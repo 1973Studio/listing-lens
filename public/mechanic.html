@@ -228,6 +228,32 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+  const menuBtn = document.getElementById('menu-btn');
+  if (!menuBtn) return;
+
+  const menuOverlay = document.getElementById('menu-overlay');
+  const menuLinks = document.querySelectorAll('.menu-link');
+  let isMenuOpen = false;
+
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+    if (isMenuOpen) {
+      menuOverlay.classList.remove('hidden');
+      setTimeout(() => {
+        menuOverlay.classList.remove('opacity-0');
+        menuOverlay.classList.add('opacity-100');
+      }, 10);
+    } else {
+      menuOverlay.classList.remove('opacity-100');
+      menuOverlay.classList.add('opacity-0');
+      setTimeout(() => menuOverlay.classList.add('hidden'), 300);
+    }
+  }
+
+  menuBtn.addEventListener('click', toggleMenu);
+  menuLinks.forEach(link => link.addEventListener('click', toggleMenu));
+});
+
       // Menu Toggle
       const menuBtn = document.getElementById('menu-btn');
       const menuOverlay = document.getElementById('menu-overlay');
