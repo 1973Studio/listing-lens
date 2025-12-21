@@ -11,141 +11,180 @@
 
   <style>
     body { font-family: 'Inter', system-ui, sans-serif; }
-    ::selection { background:#2563eb; color:#fff; }
+    ::selection { background:#2563eb; color:#fff; } /* blue-600 */
   </style>
 </head>
 
-<body class="bg-zinc-950 text-zinc-100">
+<body class="bg-white text-zinc-900">
 
-<!-- HEADER -->
-<header class="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/90 backdrop-blur">
-  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="/index.html" class="font-black tracking-tight text-lg hover:opacity-90">
-      Listing Lens
-    </a>
-
-    <div class="flex items-center gap-6 text-sm">
-      <div class="text-zinc-400">
-        Credits: <span class="text-zinc-100 font-semibold">—</span>
-      </div>
-
-      <a href="/index.html" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 font-semibold">
-        New Scan
-      </a>
-    </div>
-  </div>
-</header>
-
-<main class="max-w-6xl mx-auto px-6 py-10">
-
-  <!-- INTRO -->
-  <section class="mb-10">
-    <h1 class="text-2xl font-black tracking-tight mb-2">Your Case Files</h1>
-    <p class="text-zinc-400 max-w-2xl">
-      Each case is a forensic assessment of a specific listing. Screenshots are analysed and then deleted.
-      Only conclusions remain.
-    </p>
-  </section>
-
-  <!-- EMPTY STATE (keep for now) -->
-  <section class="mb-8 border border-zinc-800 rounded-xl p-6 bg-zinc-900">
-    <div class="flex items-start justify-between gap-6">
-      <div>
-        <h2 class="font-bold text-lg mb-1">No saved cases yet</h2>
-        <p class="text-zinc-400 text-sm">
-          Run a scan, then we’ll show your results here. (V1 stores conclusions only — no images.)
-        </p>
-      </div>
-      <a href="/index.html" class="shrink-0 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 font-semibold text-sm">
-        Scan a listing
-      </a>
-    </div>
-  </section>
-
-  <!-- SAMPLE CASE (placeholder until we wire real storage) -->
-  <section class="space-y-6">
-
-    <article class="case border border-zinc-800 rounded-xl p-6 bg-zinc-900">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div>
-          <h2 class="font-bold text-lg">2018 Jeep Wrangler JL Overland</h2>
-          <p class="text-zinc-400 text-sm">Scanned 22 Dec 2025 · Analysis based on 1 screenshot</p>
-        </div>
+  <!-- TOP NAV (matches index/mechanic vibe) -->
+  <header class="w-full">
+    <div class="max-w-7xl mx-auto px-8 pt-10">
+      <div class="flex items-center justify-between gap-6">
+        <a href="/" class="text-2xl font-black tracking-tight">
+          LISTING LENS<span class="opacity-70">.</span>
+        </a>
 
         <div class="flex items-center gap-6">
-          <div class="text-center">
-            <div class="text-3xl font-black text-amber-400">62</div>
-            <div class="text-xs text-zinc-400 uppercase tracking-wide">Lens Score</div>
+          <!-- Links (hide on small like your site; no hamburger) -->
+          <nav class="hidden md:flex items-center gap-10 text-base font-semibold text-zinc-800">
+            <a class="hover:text-blue-600" href="/mechanic">Meet Your Mechanic</a>
+            <a class="hover:text-blue-600" href="/#how">How it Works</a>
+            <a class="hover:text-blue-600" href="/#pricing">Pricing</a>
+            <span class="text-blue-600">Dashboard</span>
+          </nav>
+
+          <!-- Login button (same blue as your screenshots) -->
+          <a href="/#login" class="px-7 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold">
+            Login
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="max-w-7xl mx-auto px-8 pb-16 pt-14">
+
+    <!-- Heading (clean, bold like your hero) -->
+    <section class="mb-10">
+      <h1 class="text-4xl md:text-5xl font-black leading-tight tracking-tight">
+        Your dashboard,
+        <span class="text-blue-600">case files only.</span>
+      </h1>
+      <p class="mt-5 text-lg text-zinc-600 max-w-2xl">
+        Screenshots are analysed and then deleted. We keep the conclusions so you can make decisions faster.
+      </p>
+
+      <!-- Quick meta row (placeholders for now) -->
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <div class="rounded-2xl border border-zinc-200 bg-white px-5 py-3">
+          <div class="text-xs uppercase tracking-widest text-zinc-500 font-semibold">Credits</div>
+          <div class="text-xl font-black leading-tight">—</div>
+        </div>
+
+        <a href="/#scan" class="rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold px-7 py-3">
+          Start scan →
+        </a>
+
+        <div class="text-sm text-zinc-500">
+          (V1: this page is UI + structure. We’ll wire storage + credits next.)
+        </div>
+      </div>
+    </section>
+
+    <!-- EMPTY STATE -->
+    <section class="mb-8 rounded-3xl border border-zinc-200 bg-zinc-50 p-8">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <h2 class="text-xl font-black">No cases yet.</h2>
+          <p class="mt-2 text-zinc-600">
+            Run a scan and your results will appear here. No images are stored — just the report.
+          </p>
+        </div>
+        <a href="/#scan" class="inline-flex justify-center rounded-full bg-blue-600 hover:bg-blue-500 text-white font-semibold px-7 py-3">
+          Scan a listing →
+        </a>
+      </div>
+    </section>
+
+    <!-- CASE LIST -->
+    <section class="space-y-6">
+
+      <!-- SAMPLE CASE (placeholder until we wire real storage) -->
+      <article class="case rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+
+          <div>
+            <div class="text-xs uppercase tracking-widest text-zinc-500 font-semibold">Case</div>
+            <h2 class="mt-2 text-2xl font-black">2021 Ducati Panigale V4</h2>
+            <p class="mt-2 text-zinc-600">
+              Scanned 22 Dec 2025 · Analysis based on 1 screenshot
+            </p>
           </div>
 
-          <button type="button"
-            class="toggle-details text-sm font-semibold text-blue-400 hover:text-blue-300">
-            View details
-          </button>
-        </div>
-      </div>
+          <div class="flex items-center gap-6">
+            <div class="rounded-2xl border border-zinc-200 bg-white px-6 py-4 text-center">
+              <div class="text-xs uppercase tracking-widest text-zinc-500 font-semibold">Lens Score</div>
+              <div class="mt-1 text-4xl font-black text-emerald-600">94<span class="text-zinc-400 text-2xl">/100</span></div>
+            </div>
 
-      <div class="details hidden mt-6 border-t border-zinc-800 pt-6 space-y-6">
-        <div>
-          <h3 class="font-bold mb-1">Verdict</h3>
-          <p class="text-zinc-300">
-            Proceed with caution. Several listing claims do not align with detected trim and there are compliance risks.
-          </p>
-        </div>
+            <button type="button"
+              class="toggle-details rounded-full border border-zinc-200 px-6 py-3 font-semibold hover:border-zinc-300 hover:bg-zinc-50">
+              View details
+            </button>
+          </div>
 
-        <div>
-          <h3 class="font-bold mb-1">Visual & Technical Forensics</h3>
-          <ul class="list-disc pl-5 text-zinc-300 space-y-1">
-            <li>Rock-Trac listed, but Selec-Trac aligns with Overland trim</li>
-            <li>“Beadlock” wheels look imitation — verify in person</li>
-          </ul>
         </div>
 
-        <div>
-          <h3 class="font-bold mb-1">Regulatory & Legal (AU)</h3>
-          <ul class="list-disc pl-5 text-zinc-300 space-y-1">
-            <li>Tyre poke likely exceeds ADR limits</li>
-            <li>Lift may require engineering certification under VSB 14</li>
-          </ul>
+        <!-- DETAILS -->
+        <div class="details hidden mt-8 border-t border-zinc-200 pt-8 space-y-7">
+
+          <div class="rounded-2xl border border-zinc-200 bg-zinc-50 p-6">
+            <div class="text-xs uppercase tracking-widest text-zinc-500 font-semibold">Verdict</div>
+            <p class="mt-2 text-lg font-semibold text-zinc-900">
+              Proceed with caution — verify compliance items and confirm mechanical history before money changes hands.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-black mb-3">Visual & Technical Forensics</h3>
+            <ul class="list-disc pl-6 space-y-2 text-zinc-800">
+              <li>Seller claims don’t fully match detected trim/spec — confirm exact variant.</li>
+              <li>Modifications appear present; verify parts, receipts, and install quality.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-black mb-3">Regulatory & Legal (AU)</h3>
+            <ul class="list-disc pl-6 space-y-2 text-zinc-800">
+              <li>Any lift/tyres/exhaust changes may require certification — confirm engineering paperwork.</li>
+              <li>If it’s modified, confirm insurance will cover it. Don’t assume.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-black mb-3">Mechanical Risk</h3>
+            <ul class="list-disc pl-6 space-y-2 text-zinc-800">
+              <li>Check service history continuity and receipts (not just a stamp).</li>
+              <li>Ask for recall status proof where applicable.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-black mb-3">Ownership Reality</h3>
+            <p class="text-zinc-800">
+              The “cool mods” usually come with noise, comfort tradeoffs, running costs, and insurance friction. Budget for that.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-3 pt-2">
+            <button type="button" class="rounded-full border border-zinc-200 px-6 py-3 font-semibold hover:bg-zinc-50">
+              Re-open report
+            </button>
+            <button type="button" class="rounded-full border border-red-200 px-6 py-3 font-semibold text-red-700 hover:bg-red-50">
+              Delete case
+            </button>
+          </div>
+
         </div>
+      </article>
 
-        <div>
-          <h3 class="font-bold mb-1">Mechanical Risk</h3>
-          <ul class="list-disc pl-5 text-zinc-300 space-y-1">
-            <li>Pentastar oil cooler leak risk</li>
-            <li>Confirm HPFP recall completion (if applicable)</li>
-          </ul>
-        </div>
+    </section>
 
-        <div>
-          <h3 class="font-bold mb-1">Ownership Reality</h3>
-          <p class="text-zinc-300">
-            Roof rack + big tyres will raise wind noise and fuel use at highway speeds. You’ll feel it.
-          </p>
-        </div>
+  </main>
 
-        <div class="flex gap-4 pt-2">
-          <button class="text-sm text-blue-400 hover:text-blue-300 font-semibold" type="button">Re-open report</button>
-          <button class="text-sm text-red-400 hover:text-red-300 font-semibold" type="button">Delete case</button>
-        </div>
-      </div>
-    </article>
-
-  </section>
-
-</main>
-
-<script>
-  document.querySelectorAll(".case .toggle-details").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const caseEl = btn.closest(".case");
-      const details = caseEl.querySelector(".details");
-      const isOpen = !details.classList.contains("hidden");
-      details.classList.toggle("hidden");
-      btn.textContent = isOpen ? "View details" : "Hide details";
+  <script>
+    document.querySelectorAll(".case .toggle-details").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const caseEl = btn.closest(".case");
+        const details = caseEl.querySelector(".details");
+        const isOpen = !details.classList.contains("hidden");
+        details.classList.toggle("hidden");
+        btn.textContent = isOpen ? "View details" : "Hide details";
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
 </html>
