@@ -24,37 +24,39 @@
 <body class="bg-white text-black min-h-screen relative">
 
   <!-- NAV (Smart Sticky) -->
-<nav id="main-nav" class="flex justify-between items-center p-6 md:p-12 z-40 fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md transition-transform duration-300">
-  <a href="/" class="text-2xl font-black tracking-tighter cursor-pointer z-50 relative">LISTING LENS.</a>
+  <nav id="main-nav" class="flex justify-between items-center p-6 md:p-12 z-40 fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md transition-transform duration-300">
+    <a href="/" class="text-2xl font-black tracking-tighter cursor-pointer z-50 relative">LISTING LENS.</a>
 
-  <!-- Desktop nav -->
-  <div class="hidden md:flex items-center gap-10 z-50 relative">
-    <a href="/mechanic.html" class="font-bold tracking-tight text-blue-600">
-      Meet Your Mechanic
-    </a>
-    <a href="/#how-it-works" class="font-bold tracking-tight text-gray-700 hover:text-blue-600 transition-colors">
-      How it Works
-    </a>
-    <a href="/#pricing" class="font-bold tracking-tight text-gray-700 hover:text-blue-600 transition-colors">
-      Pricing
-    </a>
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center gap-10 z-50 relative">
+      <a href="/mechanic.html" class="font-bold tracking-tight text-blue-600">
+        Meet Your Mechanic
+      </a>
+      <a href="/#how-it-works" class="font-bold tracking-tight text-gray-700 hover:text-blue-600 transition-colors">
+        How it Works
+      </a>
+      <a href="/#pricing" class="font-bold tracking-tight text-gray-700 hover:text-blue-600 transition-colors">
+        Pricing
+      </a>
+      <a href="/#faq" class="font-bold tracking-tight text-gray-700 hover:text-blue-600 transition-colors">
+        FAQ
+      </a>
 
-    <button class="bg-blue-600 text-white font-bold px-6 py-3 rounded-full hover:bg-black transition-colors">
-      Login
-    </button>
-  </div>
-
-  <!-- Mobile hamburger -->
-  <button id="menu-btn" class="md:hidden z-50 relative group p-2" aria-label="Open menu">
-    <div class="space-y-2">
-      <span class="block w-8 h-0.5 bg-black transition-all duration-300 group-hover:bg-blue-600"></span>
-      <span class="block w-8 h-0.5 bg-black transition-all duration-300 group-hover:bg-blue-600"></span>
+      <button class="bg-blue-600 text-white font-bold px-6 py-3 rounded-full hover:bg-black transition-colors">
+        Login
+      </button>
     </div>
-  </button>
-</nav>
 
+    <!-- Mobile hamburger -->
+    <button id="menu-btn" class="md:hidden z-50 relative group p-2" aria-label="Open menu">
+      <div class="space-y-2">
+        <span class="block w-8 h-0.5 bg-black transition-all duration-300 group-hover:bg-blue-600"></span>
+        <span class="block w-8 h-0.5 bg-black transition-all duration-300 group-hover:bg-blue-600"></span>
+      </div>
+    </button>
+  </nav>
 
-  <!-- MENU OVERLAY -->
+  <!-- MENU OVERLAY (Mobile) -->
   <div id="menu-overlay" class="fixed inset-0 bg-white z-30 hidden flex-col justify-center items-center opacity-0 transition-opacity duration-300 pt-32">
     <div class="flex flex-col gap-8 text-center">
       <a href="/mechanic.html" class="menu-link text-4xl font-black tracking-tight hover:text-blue-600 transition-colors">Meet Your Mechanic</a>
@@ -62,7 +64,9 @@
       <a href="/#pricing" class="menu-link text-4xl font-black tracking-tight hover:text-blue-600 transition-colors">Pricing</a>
       <a href="/#faq" class="menu-link text-4xl font-black tracking-tight hover:text-blue-600 transition-colors">FAQ</a>
       <div class="h-px w-24 bg-gray-200 mx-auto my-4"></div>
-      <button class="text-xl font-bold uppercase tracking-widest border-2 border-black px-12 py-4 rounded-full hover:bg-black hover:text-white transition-all">Login</button>
+      <button class="text-xl font-bold uppercase tracking-widest border-2 border-black px-12 py-4 rounded-full hover:bg-black hover:text-white transition-all">
+        Login
+      </button>
     </div>
   </div>
 
@@ -71,7 +75,10 @@
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
       <div class="space-y-8 animate-fade-in-up">
-      
+        <div class="inline-flex items-center gap-2 bg-gray-100 border border-gray-200 rounded-full px-4 py-2 text-xs font-mono uppercase tracking-widest text-gray-600">
+          <span class="h-2 w-2 bg-blue-600 rounded-full"></span>
+          Persona: Pissed-Off Mechanic
+        </div>
 
         <h1 class="text-5xl md:text-7xl font-black leading-tight tracking-tighter">
           Meet Joe.<br>
@@ -99,16 +106,15 @@
 
       <!-- VISUAL PANEL -->
       <div class="relative bg-gray-100 rounded-3xl overflow-hidden shadow-inner h-[520px]">
-       <div class="absolute inset-0 bg-cover bg-center"
-  style="background-image:url('https://listinglens.app/images/personas/MeetJoe.jpg');">
-</div>
-<div class="absolute bottom-3 right-4 text-[10px] text-white/60 font-mono uppercase tracking-widest">
-  Visual representation of the Listing Lens inspection engine
-</div>
+        <div class="absolute inset-0 bg-cover bg-center"
+          style="background-image:url('https://listinglens.app/images/personas/MeetJoe.jpg');">
+        </div>
 
         <div class="absolute inset-0 bg-black/15"></div>
 
-        
+        <div class="absolute bottom-3 right-4 text-[10px] text-white/60 font-mono uppercase tracking-widest">
+          Visual representation of the Listing Lens inspection engine
+        </div>
 
         <div class="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-white/50">
           <div class="text-xs font-mono text-gray-500 uppercase tracking-widest mb-2">What he does</div>
@@ -195,7 +201,7 @@
         <div class="mt-8 p-5 rounded-2xl bg-gray-50 border border-gray-100">
           <div class="font-black mb-2">Best practice for best results</div>
           <p class="text-gray-600 text-sm leading-relaxed">
-            Use **3 screenshots** minimum: (1) title + price + km, (2) description text, (3) photo grid / key photos.
+            Use <b>3 screenshots</b> minimum: (1) title + price + km, (2) description text, (3) photo grid / key photos.
             More context = sharper call.
           </p>
         </div>
@@ -225,68 +231,53 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-  const menuBtn = document.getElementById('menu-btn');
-  if (!menuBtn) return;
-
-  const menuOverlay = document.getElementById('menu-overlay');
-  const menuLinks = document.querySelectorAll('.menu-link');
-  let isMenuOpen = false;
-
-  function toggleMenu() {
-    isMenuOpen = !isMenuOpen;
-    if (isMenuOpen) {
-      menuOverlay.classList.remove('hidden');
-      setTimeout(() => {
-        menuOverlay.classList.remove('opacity-0');
-        menuOverlay.classList.add('opacity-100');
-      }, 10);
-    } else {
-      menuOverlay.classList.remove('opacity-100');
-      menuOverlay.classList.add('opacity-0');
-      setTimeout(() => menuOverlay.classList.add('hidden'), 300);
-    }
-  }
-
-  menuBtn.addEventListener('click', toggleMenu);
-  menuLinks.forEach(link => link.addEventListener('click', toggleMenu));
-});
-
       // Menu Toggle
       const menuBtn = document.getElementById('menu-btn');
       const menuOverlay = document.getElementById('menu-overlay');
       const menuLinks = document.querySelectorAll('.menu-link');
       let isMenuOpen = false;
 
-      function toggleMenu() {
-        isMenuOpen = !isMenuOpen;
-        if (isMenuOpen) {
-          menuOverlay.classList.remove('hidden');
-          setTimeout(() => {
-            menuOverlay.classList.remove('opacity-0');
-            menuOverlay.classList.add('opacity-100');
-          }, 10);
-          menuBtn.classList.add('rotate-90');
-        } else {
-          menuOverlay.classList.remove('opacity-100');
-          menuOverlay.classList.add('opacity-0');
-          setTimeout(() => menuOverlay.classList.add('hidden'), 300);
-          menuBtn.classList.remove('rotate-90');
-        }
+      function openMenu() {
+        isMenuOpen = true;
+        menuOverlay.classList.remove('hidden');
+        // next tick for transition
+        setTimeout(() => {
+          menuOverlay.classList.remove('opacity-0');
+          menuOverlay.classList.add('opacity-100');
+        }, 10);
       }
 
-      menuBtn.addEventListener('click', toggleMenu);
+      function closeMenu() {
+        isMenuOpen = false;
+        menuOverlay.classList.remove('opacity-100');
+        menuOverlay.classList.add('opacity-0');
+        setTimeout(() => menuOverlay.classList.add('hidden'), 300);
+      }
+
+      function toggleMenu() {
+        if (isMenuOpen) closeMenu();
+        else openMenu();
+      }
+
+      if (menuBtn) {
+        menuBtn.addEventListener('click', toggleMenu);
+      }
+
       menuLinks.forEach(link => link.addEventListener('click', () => {
-        if (isMenuOpen) toggleMenu();
+        if (isMenuOpen) closeMenu();
       }));
 
-      // Smart Navbar hide/show
+      // Smart Navbar hide/show (match index behaviour)
       let lastScrollY = window.scrollY;
       const nav = document.getElementById('main-nav');
+
       window.addEventListener('scroll', () => {
         if (isMenuOpen) return;
+
         const current = window.scrollY;
         if (current > lastScrollY && current > 50) nav.classList.add('-translate-y-full');
         else nav.classList.remove('-translate-y-full');
+
         lastScrollY = current;
       });
     });
