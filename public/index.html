@@ -25,7 +25,14 @@
 <body class="bg-white text-black min-h-screen flex flex-col relative">
 
   <!-- HIDDEN INPUT FOR UPLOAD -->
-  <input type="file" id="file-upload" class="hidden" accept="image/*" />
+  <input
+  id="file-upload"
+  type="file"
+  accept="image/*"
+  multiple
+  class="..."
+/>
+
 
   <!-- LOADING MODAL -->
   <div id="loading-modal" class="fixed inset-0 bg-white/90 backdrop-blur-md z-50 hidden flex flex-col justify-center items-center">
@@ -304,11 +311,11 @@
 
         <div class="relative bg-blue-600 p-8 rounded-2xl flex-1 md:min-w-[250px] transform md:-translate-y-4 shadow-2xl shadow-blue-900/50">
           <div class="absolute -top-4 right-8 bg-white text-green-600 text-xs font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">
-            Save 70%
+            Best Value
           </div>
           <div class="text-sm font-mono text-blue-200 uppercase tracking-widest mb-2">Hunter Pack</div>
           <div class="text-4xl font-black mb-1">$20.00</div>
-          <div class="text-sm text-blue-100 mb-4">30 Scans <span class="opacity-50">(~66c each)</span></div>
+          <div class="text-sm text-blue-100 mb-4">20 Scans <span class="opacity-50">(~$1 each)</span></div>
           <button class="w-full bg-black text-white font-bold py-3 rounded-lg hover:bg-white hover:text-black transition-all">Get Pack</button>
         </div>
       </div>
@@ -332,11 +339,11 @@
       <div class="flex flex-wrap justify-center md:justify-start gap-4 md:gap-8">
         <a href="#" class="hover:text-blue-600 transition-colors">Privacy Policy</a>
         <a href="#" class="hover:text-blue-600 transition-colors">Terms & Conditions</a>
-        <span>Not a mechanical inspection</span>
-        <span>Powered by GPT</span>
-        <span>Site by <a href="https://www.theviking.io" target="_blank" class="hover:text-blue-500 transition-colors" rel="noreferrer">The Viking</a></span>
+        <span>Powered by AirWallex and CANVA</span>
+        <span>Under the Hood: OpenAI</span>
+        <span>Site:<a href="https://www.theviking.io" target="_blank" class="hover:text-blue-500 transition-colors" rel="noreferrer">The Viking</a></span>
       </div>
-      <div>© 2025-2026 - THE VIKING</div>
+        <div>© 2026 Listing Lens Labs</div>
     </div>
   </footer>
 
@@ -353,7 +360,8 @@
     // ==============================
     // This must be an HTTPS endpoint you control (Netlify Function / Cloudflare Worker / Firebase onRequest)
     // Expected request:
-    //  POST { imageBase64: "..." }
+    //  POST { "imagesBase64": ["...", "...", "...", "..."] }
+
     // Expected response:
     //  { data: { vehicle_title, lens_score, summary, market_value_estimate, red_flags: [], questions_to_ask?: [] } }
     //
@@ -361,117 +369,131 @@
     const ANALYZE_ENDPOINT = "/.netlify/functions/analyzeListing";
 
 
-    // ==============================
-    // Upload + scan logic
-    // ==============================
-    const fileInput = document.getElementById('file-upload');
+// ==============================
+// Upload + scan logic (MULTI-IMAGE, up to 4)
+// ==============================
+const fileInput = document.getElementById('file-upload');
 
-    function triggerUpload() {
-      fileInput.value = "";
-      fileInput.click();
+function triggerUpload() {
+  fileInput.value = "";
+  fileInput.click();
+}
+
+async function handleScan(files) {
+  const fileList = Array.from(files || []);
+  if (!fileList.length) return;
+
+  // Enforce max 4 screenshots
+  if (fileList.length > 4) {
+    alert("You can upload a maximum of 4 screenshots for a single listing.");
+    return;
+  }
+
+  // Show loading modal
+  document.getElementById('loading-modal').classList.remove('hidden');
+
+  try {
+    // Convert each file → base64 (no data: prefix)
+    const base64Images = await Promise.all(fileList.map(fileToBase64));
+
+    const res = await fetch(ANALYZE_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      // NOTE: backend will now receive an ARRAY, not a single value
+      body: JSON.stringify({ imagesBase64: base64Images })
+    });
+
+    if (!res.ok) {
+      const text = await res.text().catch(() => "");
+      throw new Error(`Backend error (${res.status}): ${text || "Unknown error"}`);
     }
 
-    async function handleScan(file) {
-      if (!file) return;
+    const payload = await res.json();
 
-      document.getElementById('loading-modal').classList.remove('hidden');
+    // tolerate either {data:{...}} or {data:{data:{...}}} depending on your backend
+    const data =
+      payload?.data?.data ||
+      payload?.data ||
+      payload;
 
-      try {
-        const base64String = await fileToBase64(file);
+    renderResult(data);
+  } catch (err) {
+    console.error("Scan Error:", err);
+    alert("Analysis failed. Please try again.\n\n" + (err?.message || err));
+    document.getElementById('loading-modal').classList.add('hidden');
+  }
+}
 
-        const res = await fetch(ANALYZE_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ imageBase64: base64String })
-        });
+function renderResult(data) {
+  document.getElementById('loading-modal').classList.add('hidden');
+  document.getElementById('result-modal').classList.remove('hidden');
 
-        if (!res.ok) {
-          const text = await res.text().catch(() => "");
-          throw new Error(`Backend error (${res.status}): ${text || "Unknown error"}`);
-        }
+  // these fields still work as before – backend must continue to return them
+  document.getElementById('res-title').innerText = data.vehicle_title || "Unknown Vehicle";
+  document.getElementById('res-score').innerText = (data.lens_score ?? "--") + "/100";
+  document.getElementById('res-summary').innerText = data.summary || "No summary returned.";
+  document.getElementById('res-value').innerText = data.market_value_estimate || "N/A";
 
-        const payload = await res.json();
+  const scoreEl = document.getElementById('res-score');
+  const score = Number(data.lens_score);
 
-        // tolerate either {data:{...}} or {data:{data:{...}}} depending on your backend
-        const data =
-          payload?.data?.data ||
-          payload?.data ||
-          payload;
+  if (Number.isFinite(score)) {
+    if (score > 75) scoreEl.className = "text-4xl font-black text-green-500";
+    else if (score > 50) scoreEl.className = "text-4xl font-black text-orange-500";
+    else scoreEl.className = "text-4xl font-black text-red-500";
+  } else {
+    scoreEl.className = "text-4xl font-black text-blue-600";
+  }
 
-        renderResult(data);
-      } catch (err) {
-        console.error("Scan Error:", err);
-        alert("Analysis failed. Please try again.\n\n" + (err?.message || err));
-        document.getElementById('loading-modal').classList.add('hidden');
-      }
-    }
+  const flagsList = document.getElementById('res-flags');
+  flagsList.innerHTML = "";
+  (data.red_flags || []).forEach(flag => {
+    const li = document.createElement('li');
+    li.className = "text-red-600 font-medium";
+    li.innerText = "⚠️ " + flag;
+    flagsList.appendChild(li);
+  });
 
-    function renderResult(data) {
-      document.getElementById('loading-modal').classList.add('hidden');
-      document.getElementById('result-modal').classList.remove('hidden');
+  // optional questions list
+  const qWrap = document.getElementById('res-questions-wrap');
+  const qList = document.getElementById('res-questions');
+  const questions = data.questions_to_ask || data.questions || [];
 
-      document.getElementById('res-title').innerText = data.vehicle_title || "Unknown Vehicle";
-      document.getElementById('res-score').innerText = (data.lens_score ?? "--") + "/100";
-      document.getElementById('res-summary').innerText = data.summary || "No summary returned.";
-      document.getElementById('res-value').innerText = data.market_value_estimate || "N/A";
+  if (Array.isArray(questions) && questions.length) {
+    qWrap.classList.remove('hidden');
+    qList.innerHTML = "";
+    questions.forEach(q => {
+      const li = document.createElement('li');
+      li.className = "bg-gray-50 border border-gray-100 rounded-xl p-3";
+      li.innerText = "• " + q;
+      qList.appendChild(li);
+    });
+  } else {
+    qWrap.classList.add('hidden');
+    qList.innerHTML = "";
+  }
 
-      const scoreEl = document.getElementById('res-score');
-      const score = Number(data.lens_score);
+  // NOTE: later we can also use data.full_report for dashboard / x-ray etc.
+}
 
-      if (Number.isFinite(score)) {
-        if (score > 75) scoreEl.className = "text-4xl font-black text-green-500";
-        else if (score > 50) scoreEl.className = "text-4xl font-black text-orange-500";
-        else scoreEl.className = "text-4xl font-black text-red-500";
-      } else {
-        scoreEl.className = "text-4xl font-black text-blue-600";
-      }
+function closeModal() {
+  document.getElementById('result-modal').classList.add('hidden');
+}
 
-      const flagsList = document.getElementById('res-flags');
-      flagsList.innerHTML = "";
-      (data.red_flags || []).forEach(flag => {
-        const li = document.createElement('li');
-        li.className = "text-red-600 font-medium";
-        li.innerText = "⚠️ " + flag;
-        flagsList.appendChild(li);
-      });
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error("File read failed"));
+    reader.onloadend = () => {
+      // strip "data:image/...;base64,"
+      const result = String(reader.result || "");
+      const base64 = result.includes(",") ? result.split(",")[1] : result;
+      resolve(base64);
+    };
+    reader.readAsDataURL(file);
+  });
+}
 
-      // optional questions list
-      const qWrap = document.getElementById('res-questions-wrap');
-      const qList = document.getElementById('res-questions');
-      const questions = data.questions_to_ask || data.questions || [];
-
-      if (Array.isArray(questions) && questions.length) {
-        qWrap.classList.remove('hidden');
-        qList.innerHTML = "";
-        questions.forEach(q => {
-          const li = document.createElement('li');
-          li.className = "bg-gray-50 border border-gray-100 rounded-xl p-3";
-          li.innerText = "• " + q;
-          qList.appendChild(li);
-        });
-      } else {
-        qWrap.classList.add('hidden');
-        qList.innerHTML = "";
-      }
-    }
-
-    function closeModal() {
-      document.getElementById('result-modal').classList.add('hidden');
-    }
-
-    function fileToBase64(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onerror = () => reject(new Error("File read failed"));
-        reader.onloadend = () => {
-          // strip "data:image/...;base64,"
-          const result = String(reader.result || "");
-          const base64 = result.includes(",") ? result.split(",")[1] : result;
-          resolve(base64);
-        };
-        reader.readAsDataURL(file);
-      });
-    }
 
     // ==============================
     // UI scripts (unchanged vibe)
@@ -538,8 +560,9 @@
       document.getElementById('footer-scan-btn').addEventListener('click', triggerUpload);
       document.getElementById('close-btn').addEventListener('click', closeModal);
 
-      // File input handler
-      fileInput.addEventListener('change', () => handleScan(fileInput.files?.[0]));
+// File input handler (multi-image)
+fileInput.addEventListener('change', () => handleScan(fileInput.files));
+
     });
   </script>
 </body>

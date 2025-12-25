@@ -14,6 +14,10 @@
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
     .animate-fade-in-up { animation: fadeUp .45s ease-out both; }
+
+    /* subtle “scan-line” vibe */
+    @keyframes scan { 0% { top: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+    .animate-scan { animation: scan 2.8s linear infinite; }
   </style>
 </head>
 
@@ -54,12 +58,12 @@
         </div>
 
         <h1 class="text-5xl md:text-7xl font-black leading-tight tracking-tighter">
-          Meet your mechanic.<br>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">He doesn’t care about feelings.</span>
+          Meet Joe.<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">He doesn’t care about your feelings.</span>
         </h1>
 
         <p class="text-xl md:text-2xl font-medium max-w-xl text-gray-500 leading-relaxed">
-          He cares about <strong>what breaks</strong>, what it costs, and what sellers “forget” to mention.
+          He cares about <b>what breaks</b>, what it costs, and what sellers “forget” to mention.
           Listing Lens exists to save you time, money, and regret.
         </p>
 
@@ -79,23 +83,17 @@
 
       <!-- VISUAL PANEL -->
       <div class="relative bg-gray-100 rounded-3xl overflow-hidden shadow-inner h-[520px]">
+       <div class="absolute inset-0 bg-cover bg-center"
+  style="background-image:url('https://listinglens.app/images/personas/MeetJoe.jpg');">
+</div>
+<div class="absolute bottom-3 right-4 text-[10px] text-white/60 font-mono uppercase tracking-widest">
+  Visual representation of the Listing Lens inspection engine
+</div>
 
-        <!-- image layer -->
-        <div
-          id="mechanic-visual"
-          class="absolute inset-0 bg-center bg-cover bg-no-repeat"
-          style="background-image:url('/images/personas/MeetJoe.jpg');">
-        </div>
-
-        <!-- overlay -->
         <div class="absolute inset-0 bg-black/15"></div>
 
-        <!-- caption -->
-        <div class="absolute bottom-3 right-4 text-[10px] text-white/70 font-mono uppercase tracking-widest">
-          Visual representation of the Listing Lens inspection engine
-        </div>
+        
 
-        <!-- content card -->
         <div class="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-white/50">
           <div class="text-xs font-mono text-gray-500 uppercase tracking-widest mb-2">What he does</div>
           <div class="space-y-2 text-sm text-gray-700">
@@ -181,7 +179,7 @@
         <div class="mt-8 p-5 rounded-2xl bg-gray-50 border border-gray-100">
           <div class="font-black mb-2">Best practice for best results</div>
           <p class="text-gray-600 text-sm leading-relaxed">
-            Use <strong>3 screenshots</strong> minimum: (1) title + price + km, (2) description text, (3) photo grid / key photos.
+            Use **3 screenshots** minimum: (1) title + price + km, (2) description text, (3) photo grid / key photos.
             More context = sharper call.
           </p>
         </div>
@@ -249,20 +247,6 @@
         else nav.classList.remove('-translate-y-full');
         lastScrollY = current;
       });
-
-      // Image fallback: if local path 404s, swap to raw GitHub so page never looks broken.
-      const localUrl = "/images/personas/MeetJoe.jpg";
-      const fallbackUrl = "https://raw.githubusercontent.com/1973Studio/listing-lens/refs/heads/main/images/personas/mechanic-v1.jpg";
-
-      const imgProbe = new Image();
-      imgProbe.onload = () => {
-        // local is good, do nothing
-      };
-      imgProbe.onerror = () => {
-        const el = document.getElementById("mechanic-visual");
-        if (el) el.style.backgroundImage = `url('${fallbackUrl}')`;
-      };
-      imgProbe.src = localUrl;
     });
   </script>
 
