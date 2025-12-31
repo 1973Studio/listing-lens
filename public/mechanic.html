@@ -12,12 +12,11 @@
     body { font-family: 'Inter', sans-serif; }
     ::selection { background-color: #2563EB; color: white; }
 
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px);} to { opacity: 1; transform: translateY(0);} }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
     .animate-fade-in-up { animation: fadeUp .45s ease-out both; }
-
-    /* subtle “scan-line” vibe */
-    @keyframes scan { 0% { top: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
-    .animate-scan { animation: scan 2.8s linear infinite; }
   </style>
 </head>
 
@@ -27,7 +26,28 @@
   <nav id="main-nav" class="flex justify-between items-center p-6 md:p-12 z-40 fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md transition-transform duration-300">
     <a href="/" class="text-2xl font-black tracking-tighter cursor-pointer z-50 relative">LISTING LENS.</a>
 
-    <button id="menu-btn" class="z-50 relative group p-2" aria-label="Open menu">
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center gap-10 z-50 relative">
+      <a href="/mechanic.html" class="font-bold tracking-tight text-blue-600">
+        Meet Your Mechanic
+      </a>
+      <a href="/#how-it-works" class="font-bold tracking-tight text-gray-700 hover:text-blue-600 transition-colors">
+        How it Works
+      </a>
+      <a href="/#faq" class="font-bold tracking-tight text-gray-700 hover:text-blue-600 transition-colors">
+        FAQ
+      </a>
+
+      <a
+        href="/dashboard.html"
+        class="bg-blue-600 text-white font-bold px-6 py-3 rounded-full hover:bg-black transition-colors"
+      >
+        Login
+      </a>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button id="menu-btn" class="md:hidden z-50 relative group p-2" aria-label="Open menu">
       <div class="space-y-2">
         <span class="block w-8 h-0.5 bg-black transition-all duration-300 group-hover:bg-blue-600"></span>
         <span class="block w-8 h-0.5 bg-black transition-all duration-300 group-hover:bg-blue-600"></span>
@@ -35,72 +55,106 @@
     </button>
   </nav>
 
-  <!-- MENU OVERLAY -->
-  <div id="menu-overlay" class="fixed inset-0 bg-white z-30 hidden flex-col justify-center items-center opacity-0 transition-opacity duration-300 pt-32">
+  <!-- MENU OVERLAY (Mobile) -->
+  <div
+    id="menu-overlay"
+    class="fixed inset-0 bg-white z-30 hidden flex-col justify-center items-center opacity-0 transition-opacity duration-300 pt-32"
+  >
     <div class="flex flex-col gap-8 text-center">
-      <a href="/mechanic.html" class="menu-link text-4xl font-black tracking-tight hover:text-blue-600 transition-colors">Meet Your Mechanic</a>
-      <a href="/#how-it-works" class="menu-link text-4xl font-black tracking-tight hover:text-blue-600 transition-colors">How it Works</a>
-      <a href="/#pricing" class="menu-link text-4xl font-black tracking-tight hover:text-blue-600 transition-colors">Pricing</a>
-      <a href="/#faq" class="menu-link text-4xl font-black tracking-tight hover:text-blue-600 transition-colors">FAQ</a>
+      <a href="/mechanic.html" class="menu-link text-4xl font-black tracking-tight hover:text-blue-600 transition-colors">
+        Meet Your Mechanic
+      </a>
+      <a href="/#how-it-works" class="menu-link text-4xl font-black tracking-tight hover:text-blue-600 transition-colors">
+        How it Works
+      </a>
+      <a href="/#faq" class="menu-link text-4xl font-black tracking-tight hover:text-blue-600 transition-colors">
+        FAQ
+      </a>
       <div class="h-px w-24 bg-gray-200 mx-auto my-4"></div>
-      <button class="text-xl font-bold uppercase tracking-widest border-2 border-black px-12 py-4 rounded-full hover:bg-black hover:text-white transition-all">Login</button>
+      <a
+        href="/dashboard.html"
+        class="text-xl font-bold uppercase tracking-widest border-2 border-black px-12 py-4 rounded-full hover:bg-black hover:text-white transition-all"
+      >
+        Login
+      </a>
     </div>
   </div>
 
   <!-- HERO -->
-  <main class="pt-32 pb-16 px-6 md:px-12">
+  <main class="pt-40 md:pt-44 pb-16 px-6 md:px-12">
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
       <div class="space-y-8 animate-fade-in-up">
         <div class="inline-flex items-center gap-2 bg-gray-100 border border-gray-200 rounded-full px-4 py-2 text-xs font-mono uppercase tracking-widest text-gray-600">
           <span class="h-2 w-2 bg-blue-600 rounded-full"></span>
-          Persona: Pissed-Off Mechanic
+          Persona: Pissed-Off Mechanic (Live)
         </div>
 
         <h1 class="text-5xl md:text-7xl font-black leading-tight tracking-tighter">
           Meet Joe.<br>
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">He doesn’t care about your feelings.</span>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">
+            He doesn’t care about your feelings.
+          </span>
         </h1>
 
         <p class="text-xl md:text-2xl font-medium max-w-xl text-gray-500 leading-relaxed">
-          He cares about <b>what breaks</b>, what it costs, and what sellers “forget” to mention.
+          He cares about <strong>what breaks</strong>, what it costs, and what sellers “forget” to mention.
           Listing Lens exists to save you time, money, and regret.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4">
-          <a href="/#pricing" class="bg-blue-600 text-white text-lg font-bold py-4 px-10 rounded-full hover:bg-black transition-colors w-fit">
+          <a
+            href="/dashboard.html"
+            class="bg-blue-600 text-white text-lg font-bold py-4 px-10 rounded-full hover:bg-black transition-colors w-fit"
+          >
             Scan a listing →
           </a>
-          <a href="/#how-it-works" class="bg-white border-2 border-black text-black text-lg font-bold py-4 px-10 rounded-full hover:bg-black hover:text-white transition-colors w-fit">
+          <a
+            href="/#how-it-works"
+            class="bg-white border-2 border-black text-black text-lg font-bold py-4 px-10 rounded-full hover:bg-black hover:text-white transition-colors w-fit"
+          >
             How it works
           </a>
         </div>
 
         <p class="text-xs text-gray-400 font-mono tracking-widest uppercase">
-          * Not a mechanical inspection. It’s a brutally honest filter.
+          * Not a mechanical inspection. It’s a brutally honest filter before you spend real money.
         </p>
       </div>
 
       <!-- VISUAL PANEL -->
       <div class="relative bg-gray-100 rounded-3xl overflow-hidden shadow-inner h-[520px]">
-       <div class="absolute inset-0 bg-cover bg-center"
-  style="background-image:url('https://listinglens.app/images/personas/MeetJoe.jpg');">
-</div>
-<div class="absolute bottom-3 right-4 text-[10px] text-white/60 font-mono uppercase tracking-widest">
-  Visual representation of the Listing Lens inspection engine
-</div>
+        <!-- Primary visual -->
+        <div
+          id="mechanic-visual"
+          class="absolute inset-0 bg-center bg-cover bg-no-repeat"
+          style="background-image:url('/images/personas/MeetJoe.jpg');"
+        ></div>
 
+        <!-- overlay -->
         <div class="absolute inset-0 bg-black/15"></div>
 
-        
+        <!-- caption -->
+        <div class="absolute bottom-3 right-4 text-[10px] text-white/70 font-mono uppercase tracking-widest">
+          Visual representation of the Listing Lens inspection engine
+        </div>
 
+        <!-- content card -->
         <div class="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-white/50">
           <div class="text-xs font-mono text-gray-500 uppercase tracking-widest mb-2">What he does</div>
           <div class="space-y-2 text-sm text-gray-700">
-            <div class="flex gap-2"><span class="font-black">•</span><span>Decodes listing fluff into reality.</span></div>
-            <div class="flex gap-2"><span class="font-black">•</span><span>Flags missing info, mismatches, and “too clean” photos.</span></div>
-            <div class="flex gap-2"><span class="font-black">•</span><span>Calls out known faults for the model/year.</span></div>
-            <div class="flex gap-2"><span class="font-black">•</span><span>Spits out the exact questions you should ask.</span></div>
+            <div class="flex gap-2">
+              <span class="font-black">•</span><span>Decodes listing fluff into “here’s what it really means”.</span>
+            </div>
+            <div class="flex gap-2">
+              <span class="font-black">•</span><span>Flags missing info, mismatched details and “too clean” photos.</span>
+            </div>
+            <div class="flex gap-2">
+              <span class="font-black">•</span><span>Calls out known faults for the model/year from typical owner pain.</span>
+            </div>
+            <div class="flex gap-2">
+              <span class="font-black">•</span><span>Spits out the exact questions you should ask before wasting a weekend.</span>
+            </div>
           </div>
         </div>
 
@@ -108,6 +162,94 @@
       </div>
     </div>
   </main>
+
+  <!-- COMING SOON: OTHER VOICES -->
+  <section class="py-16 px-6 md:px-12 bg-white border-t border-gray-100">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+        <div>
+          <p class="text-[11px] font-mono uppercase tracking-[0.3em] text-gray-500 mb-2">Coming soon</p>
+          <h2 class="text-3xl md:text-4xl font-black tracking-tight">
+            Different voices for different buyers.
+          </h2>
+        </div>
+        <p class="text-sm text-gray-600 max-w-md">
+          Joe’s the one we ship first—because he calls bullshit. Next, you’ll be able to choose
+          who’s “sitting next to you” when you scan a listing.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Concerned Father -->
+        <div class="bg-gray-50 border border-gray-100 rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.25em] text-gray-500 mb-3">
+              <span class="h-2 w-2 rounded-full bg-amber-400"></span>
+              Concerned Father
+              <span class="ml-2 px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 text-[9px] font-semibold">Planned</span>
+            </div>
+            <h3 class="text-lg font-black mb-2">“Is this safe for my kid?”</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Laser-focused on safety, crash history, basic reliability, and the cost of “surprise” repairs in the first 12 months.
+            </p>
+          </div>
+          <p class="mt-4 text-[11px] text-gray-500">
+            Ideal for first cars, small hatches, family SUVs.
+          </p>
+        </div>
+
+        <!-- Worried Mum -->
+        <div class="bg-gray-50 border border-gray-100 rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.25em] text-gray-500 mb-3">
+              <span class="h-2 w-2 rounded-full bg-rose-400"></span>
+              Worried Mum
+              <span class="ml-2 px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 text-[9px] font-semibold">Planned</span>
+            </div>
+            <h3 class="text-lg font-black mb-2">“Will this strand us on the side of the road?”</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Less impressed by power figures, more obsessed with breakdown risk, warranty, roadside support and practicality.
+            </p>
+          </div>
+          <p class="mt-4 text-[11px] text-gray-500">
+            Built for school runs, road trips, and life logistics.
+          </p>
+        </div>
+
+        <!-- Know-It-All Friend -->
+        <div class="bg-gray-50 border border-gray-100 rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.25em] text-gray-500 mb-3">
+              <span class="h-2 w-2 rounded-full bg-blue-500"></span>
+              Know-It-All Friend
+              <span class="ml-2 px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 text-[9px] font-semibold">Planned</span>
+            </div>
+            <h3 class="text-lg font-black mb-2">“Alright, let’s pick this apart.”</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Model trivia, option packs, weird trim quirks, and resale value. The one who reads forums at 2am so you don’t have to.
+            </p>
+          </div>
+          <p class="mt-4 text-[11px] text-gray-500">
+            Perfect for enthusiasts hunting “the right spec”.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-8 grid md:grid-cols-[minmax(0,2fr),minmax(0,1.2fr)] gap-6 items-center">
+        <p class="text-sm text-gray-600">
+          In the future, you’ll pick your co-pilot before each scan: the brutal mechanic, the cautious parent, the spec nerd.
+          Under the hood it’s the same analysis engine reading your screenshots—but the lens, tone and emphasis shift to match
+          how you think about risk.
+        </p>
+        <div class="bg-gray-50 border border-dashed border-gray-300 rounded-2xl p-4 text-xs text-gray-500 font-mono uppercase tracking-[0.22em]">
+          <div class="mb-1 text-gray-700">Want a say?</div>
+          <p>
+            We’re roadmapping personas with early users. Tell us who you want in your ear when you’re about to wire a deposit.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- WHAT TO EXPECT -->
   <section class="py-20 px-6 md:px-12 bg-white">
@@ -119,7 +261,7 @@
           <div class="text-xs font-mono text-gray-400 uppercase tracking-widest mb-3">01</div>
           <h3 class="text-xl font-black mb-3">Straight verdict</h3>
           <p class="text-gray-500 leading-relaxed">
-            Not “maybe”. Not “it depends”. You’ll get: good buy / bad buy / buy-only-if.
+            Not “maybe”. Not “it depends”. You’ll get: good buy / bad buy / buy-only-if, backed by reasons.
           </p>
         </div>
 
@@ -127,7 +269,7 @@
           <div class="text-xs font-mono text-gray-400 uppercase tracking-widest mb-3">02</div>
           <h3 class="text-xl font-black mb-3">Red flags + missing info</h3>
           <p class="text-gray-500 leading-relaxed">
-            Service history absent? Photos weirdly cropped? Suspicious phrasing? It gets called out.
+            Service history absent? Photos weirdly cropped? Suspicious phrasing? It gets called out explicitly.
           </p>
         </div>
 
@@ -148,21 +290,27 @@
       <div>
         <h2 class="text-3xl md:text-4xl font-black tracking-tight mb-6">How the mechanic thinks</h2>
         <p class="text-gray-600 leading-relaxed text-lg mb-6">
-          He’s not here to be impressed. He’s here to find the bill that’s hiding behind the photos.
+          He’s not here to be impressed. He’s here to find the bill hiding behind the photos.
         </p>
 
         <div class="space-y-4 text-gray-700">
           <div class="bg-white border border-gray-100 rounded-2xl p-5">
             <div class="font-black mb-1">He distrusts perfect listings.</div>
-            <div class="text-gray-500 text-sm">Overly polished photos + vague description often means “don’t look too closely”.</div>
+            <div class="text-gray-500 text-sm">
+              Overly polished photos + vague description often means “don’t look too closely”.
+            </div>
           </div>
           <div class="bg-white border border-gray-100 rounded-2xl p-5">
             <div class="font-black mb-1">He cares about history.</div>
-            <div class="text-gray-500 text-sm">No records = assume the worst until proven otherwise.</div>
+            <div class="text-gray-500 text-sm">
+              No records = assume the worst until proven otherwise.
+            </div>
           </div>
           <div class="bg-white border border-gray-100 rounded-2xl p-5">
             <div class="font-black mb-1">He watches for mismatch.</div>
-            <div class="text-gray-500 text-sm">Trim badges, odometer vs wear, mods vs claim, seller language vs reality.</div>
+            <div class="text-gray-500 text-sm">
+              Trim badges, odometer vs wear, mods vs claim, seller language vs reality.
+            </div>
           </div>
         </div>
       </div>
@@ -171,21 +319,42 @@
         <div class="text-xs font-mono text-gray-400 uppercase tracking-widest mb-4">Non-negotiables</div>
 
         <ul class="space-y-3 text-gray-700">
-          <li class="flex gap-3"><span class="text-blue-600 font-black">✓</span><span><span class="font-black">You stay anonymous.</span> Screenshots aren’t stored after the report is generated (design goal).</span></li>
-          <li class="flex gap-3"><span class="text-blue-600 font-black">✓</span><span><span class="font-black">No scraping.</span> We only analyse what you provide.</span></li>
-          <li class="flex gap-3"><span class="text-blue-600 font-black">✓</span><span><span class="font-black">No fence-sitting.</span> The mechanic picks a side and tells you why.</span></li>
+          <li class="flex gap-3">
+            <span class="text-blue-600 font-black">✓</span>
+            <span>
+              <span class="font-black">You stay anonymous.</span>
+              Screenshots aren’t stored after the report is generated (design goal).
+            </span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-blue-600 font-black">✓</span>
+            <span>
+              <span class="font-black">No scraping.</span>
+              We only analyse what you provide.
+            </span>
+          </li>
+          <li class="flex gap-3">
+            <span class="text-blue-600 font-black">✓</span>
+            <span>
+              <span class="font-black">No fence-sitting.</span>
+              The mechanic picks a side and tells you why.
+            </span>
+          </li>
         </ul>
 
         <div class="mt-8 p-5 rounded-2xl bg-gray-50 border border-gray-100">
           <div class="font-black mb-2">Best practice for best results</div>
           <p class="text-gray-600 text-sm leading-relaxed">
-            Use **3 screenshots** minimum: (1) title + price + km, (2) description text, (3) photo grid / key photos.
-            More context = sharper call.
+            Use <strong>3–4 screenshots</strong> minimum: (1) title + price + km, (2) description text,
+            (3) spec table, (4) photo grid / key photos. More context = sharper call.
           </p>
         </div>
 
         <div class="mt-8">
-          <a href="/#pricing" class="inline-flex items-center justify-center bg-black text-white font-bold px-8 py-3 rounded-full hover:bg-blue-600 transition-colors">
+          <a
+            href="/dashboard.html"
+            class="inline-flex items-center justify-center bg-black text-white font-bold px-8 py-3 rounded-full hover:bg-blue-600 transition-colors"
+          >
             Run a scan →
           </a>
         </div>
@@ -215,31 +384,39 @@
       const menuLinks = document.querySelectorAll('.menu-link');
       let isMenuOpen = false;
 
-      function toggleMenu() {
-        isMenuOpen = !isMenuOpen;
-        if (isMenuOpen) {
-          menuOverlay.classList.remove('hidden');
-          setTimeout(() => {
-            menuOverlay.classList.remove('opacity-0');
-            menuOverlay.classList.add('opacity-100');
-          }, 10);
-          menuBtn.classList.add('rotate-90');
-        } else {
-          menuOverlay.classList.remove('opacity-100');
-          menuOverlay.classList.add('opacity-0');
-          setTimeout(() => menuOverlay.classList.add('hidden'), 300);
-          menuBtn.classList.remove('rotate-90');
-        }
+      function openMenu() {
+        isMenuOpen = true;
+        menuOverlay.classList.remove('hidden');
+        setTimeout(() => {
+          menuOverlay.classList.remove('opacity-0');
+          menuOverlay.classList.add('opacity-100');
+        }, 10);
       }
 
-      menuBtn.addEventListener('click', toggleMenu);
+      function closeMenu() {
+        isMenuOpen = false;
+        menuOverlay.classList.remove('opacity-100');
+        menuOverlay.classList.add('opacity-0');
+        setTimeout(() => menuOverlay.classList.add('hidden'), 300);
+      }
+
+      function toggleMenu() {
+        if (isMenuOpen) closeMenu();
+        else openMenu();
+      }
+
+      if (menuBtn) {
+        menuBtn.addEventListener('click', toggleMenu);
+      }
+
       menuLinks.forEach(link => link.addEventListener('click', () => {
-        if (isMenuOpen) toggleMenu();
+        if (isMenuOpen) closeMenu();
       }));
 
       // Smart Navbar hide/show
       let lastScrollY = window.scrollY;
       const nav = document.getElementById('main-nav');
+
       window.addEventListener('scroll', () => {
         if (isMenuOpen) return;
         const current = window.scrollY;
@@ -247,6 +424,18 @@
         else nav.classList.remove('-translate-y-full');
         lastScrollY = current;
       });
+
+      // Image fallback: if local path 404s, swap to GitHub asset so page never looks broken.
+      const localUrl = "/images/personas/MeetJoe.jpg";
+      const fallbackUrl = "https://raw.githubusercontent.com/1973Studio/listing-lens/refs/heads/main/images/personas/mechanic-v1.jpg";
+
+      const imgProbe = new Image();
+      imgProbe.onload = () => {};
+      imgProbe.onerror = () => {
+        const el = document.getElementById("mechanic-visual");
+        if (el) el.style.backgroundImage = `url('${fallbackUrl}')`;
+      };
+      imgProbe.src = localUrl;
     });
   </script>
 
