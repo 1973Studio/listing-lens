@@ -4,8 +4,14 @@ const { initializeApp } = require("firebase-admin/app");
 
 initializeApp();
 
-// 🔑 API Key (Hardcoded for V1 stability)
-const genAI = new GoogleGenerativeAI("AIzaSyAedFuMwj5e0UQk8D4tziC7LVwL0ECE-q0");
+// 🔑 API Key from environment variable
+const apiKey = process.env.GOOGLE_GENERATIVE_AI_KEY;
+
+if (!apiKey) {
+  throw new Error("GOOGLE_GENERATIVE_AI_KEY environment variable is not set");
+}
+
+const genAI = new GoogleGenerativeAI(apiKey);
 
 const SYSTEM_PROMPT = `
   You are Listing Lens (The Viking Engine). You are the "Universal Truth Layer" for transport listings.
